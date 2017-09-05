@@ -21,5 +21,7 @@ public class Calculate {
 	public static double toRadians(double angle_in_degrees) {
 		return angle_in_degrees * (3.14159 / 180);
 	}
-//THis method
+//THis method  
+	//
+	
 }
