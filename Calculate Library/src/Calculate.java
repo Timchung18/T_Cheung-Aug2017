@@ -62,4 +62,9 @@ public class Calculate {
 		int last = b * d;
 		return (first + variable + "^2" + "+" + (opposite + inside) + variable + "+" + last);
 	}//negative numbers do weird things in "foil" method and toMIxedNum and toImproperFrac
+	
+	//This method determines whether or not 
+	public static boolean isDivisibleBy(int operand1, int operand2) {
+		return (operand1 % operand2) == 0;
+	}
 }
