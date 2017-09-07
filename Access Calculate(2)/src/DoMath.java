@@ -9,5 +9,11 @@ public class DoMath {
 		System.out.println(Calculate.cube(3));
 		System.out.println(Calculate.average(2.6,2.7));
 		System.out.println(Calculate.average(2.0,3.0,4.0));
+		System.out.println(Calculate.toRadians(45.0));
+		System.out.println(Calculate.toDegrees(0.7853975));
+		System.out.println(Calculate.discriminant(1.0, -5.0, 6.0));
+		System.out.println(Calculate.toImproperFrac(3, 1, 2));
+		System.out.println(Calculate.toMixedNum(5, 2));
+		System.out.println(Calculate.foil(2,3,4,-2,"x"));
 }
 }
