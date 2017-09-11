@@ -67,4 +67,59 @@ public class Calculate {
 	public static boolean isDivisibleBy(int operand1, int operand2) {
 		return (operand1 % operand2) == 0;
 	}
+	
+	//this method returns the absolute number of the number passed
+	public static double absValue (double operand) { 
+		if (operand < 0.0) {
+			operand = operand * -1.0; 
+		}
+		return operand;
+	}
+	
+	//this method returns the larger of the values passed 
+	public static double max(double operandA, double operandB) {
+		if (operandA < operandB) {
+			operandA = operandB;
+		}
+		return operandA;
+	}
+	
+	//This method overloads the previous method. This method accepts one more double than the other one
+	public static double max(double operandA, double operandB, double operandC) {
+		if (operandA >= operandB && operandA >= operandC) {
+			operandC = operandA;
+		}
+		if (operandB >= operandC && operandB >= operandA) {
+			operandC = operandB;
+		}
+		return operandC;
+	}
+	
+	//This method returns the smaller of the values passed
+	public static int min(int operandA, int operandB) {
+		if (operandA < operandB) {
+			operandB = operandA;
+		}
+		return operandB;
+	}
+	
+	//This method rounds a double constantly to 2 decimal places and returns a double
+	public static double round2(double operandx) {
+		double operand = operandx;
+	
+		for (double j = operand; j >= 0.1; j = operand ) {
+			 operand = j - 0.1;
+		}
+		for (double j = operand; j >= 0.01; j = operand) {
+			operand = j - 0.01;
+		}
+		if (operand >= 0.005) {
+			operandx = operandx - operand + 0.01;
+		}else {
+			operandx = operandx - operand;
+		}
+		return operandx;
+	} // dont know about negative numbers tho?
+	
+	
 }

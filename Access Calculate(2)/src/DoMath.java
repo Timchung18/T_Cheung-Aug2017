@@ -16,5 +16,23 @@ public class DoMath {
 		System.out.println(Calculate.toMixedNum(5, 2));
 		System.out.println(Calculate.foil(2,3,4,-2,"x"));
 		System.out.println(Calculate.isDivisibleBy(5, -9));
+		System.out.println(Calculate.absValue(-4.9));
+		System.out.println(Calculate.max(9.9,9.0));
+		System.out.println(Calculate.max(3.0, 4.5, 5.0));
+		/*System.out.println(Calculate.max(3.0, 3.0, 5.0));
+		System.out.println(Calculate.max(3.0, 4.5, 3.0));
+		System.out.println(Calculate.max(3.0, 3.0, 3.0));
+		System.out.println();
+		System.out.println(Calculate.max(4.5, 3.0, 5.0));
+		System.out.println(Calculate.max(4.5, 0.5, 4.5));
+		System.out.println(Calculate.max(30.1, 14.5, 5.0));
+		System.out.println();
+		System.out.println(Calculate.max(3.0, 1.5, 1.5));
+		System.out.println(Calculate.max(1.0, 1.5, 1.5));
+		System.out.println(Calculate.max(3.0, 3.0, 1.5));*/
+		System.out.println(Calculate.min(3, 1));
+		System.out.println(Calculate.round2(1.578));
+		System.out.println(Calculate.round2(1.571));
+
 }
 }
