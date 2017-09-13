@@ -105,20 +105,21 @@ public class Calculate {
 	
 	//This method rounds a double constantly to 2 decimal places and returns a double
 	public static double round2(double operandx) {
-		double operand = operandx;
-	
-		for (double j = operand; j >= 0.1; j = operand ) {
-			 operand = j - 0.1;
+		
+	double operand = operandx;
+		while (operand >= 0.1) {
+			 operand = operand - 0.1;
 		}
-		for (double j = operand; j >= 0.01; j = operand) {
-			operand = j - 0.01;
+		/*while (operand >= 0.01) {
+			operand = operand - 0.01;
 		}
 		if (operand >= 0.005) {
 			operandx = operandx - operand + 0.01;
 		}else {
 			operandx = operandx - operand;
 		}
-		return operandx;
+		*/
+		return operand;
 	} // dont know about negative numbers tho?
 		
 	
