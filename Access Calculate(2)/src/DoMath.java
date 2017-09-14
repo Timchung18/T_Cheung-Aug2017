@@ -33,6 +33,7 @@ public class DoMath {
 		System.out.println(Calculate.min(3, 1));
 		System.out.println(Calculate.round2(1.578));
 		System.out.println(Calculate.round2(1.571));
+		System.out.print(6%3);
 
 }
 }
