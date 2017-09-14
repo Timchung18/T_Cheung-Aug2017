@@ -103,27 +103,35 @@ public class Calculate {
 		return operandB;
 	}
 	
-	//This method rounds a double constantly to 2 decimal places and returns a double
-	public static double round2(double operandx) {
-		
-	double operand = operandx;
-		while (operand >= 0.1) {
-			 operand = operand - 0.1;
-		}
-		/*while (operand >= 0.01) {
-			operand = operand - 0.01;
-		}
-		if (operand >= 0.005) {
-			operandx = operandx - operand + 0.01;
+	//This method rounds a double constantly to 2 decimal places and returns a double		
+	public static double round2(double operand) {
+		operand = operand * 1000;
+		int remainder = (int) operand % 10;
+		if (remainder >= 5) {
+			operand = (operand + 10 - remainder) / 1000;
 		}else {
-			operandx = operandx - operand;
+			operand = (operand - remainder) / 1000;
 		}
-		*/
 		return operand;
-	} // dont know about negative numbers tho?
-		
+	}
 	
-		
+	//This method raises a value to a positive integer power (assume that the integer is postitive
+	public static double exponent(double base, int power) {
+		double k = base;
+		double pretendbase = base;
+		for (int i = 1; i != power; i ++) {
+			k = pretendbase * k;
+			base = k;
+		}
+		return base; 
+	}
 	
-	
+	//This method returns the factorial of the value passed
+	public static int factorial(int operandx) {
+		int operand = operandx;
+		for (int i = 1; i < operand; i++) {
+			operandx = operandx * i;
+		}
+		return operandx;
+	}
 }

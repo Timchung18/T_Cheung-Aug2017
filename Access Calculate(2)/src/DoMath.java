@@ -6,7 +6,7 @@ public class DoMath {
 
 	public static void main(String[] args) {
 		/*
-		 * System.out.println(Calculate.square(-2));
+		System.out.println(Calculate.square(-2));
 		System.out.println(Calculate.cube(3));
 		System.out.println(Calculate.average(2.6,2.7));
 		System.out.println(Calculate.average(2.0,3.0,4.0));
@@ -34,9 +34,8 @@ public class DoMath {
 		System.out.println(Calculate.min(3, 1));
 		System.out.println(Calculate.round2(1.578));
 		System.out.println(Calculate.round2(1.571));
-		System.out.print(6%3);
 		System.out.println(Calculate.round2(0.999));
-
-
+		System.out.println(Calculate.exponent(3, 4));
+		System.out.println(Calculate.factorial(9));
 }
 }
