@@ -134,4 +134,19 @@ public class Calculate {
 		}
 		return operandx;
 	}
+	
+	//This method determines whether or not an integer is prime
+	public static int isPrime(int operand) {
+		
+		for (int i = operand - 1; operand > 1 ; i--) {
+			
+			boolean k = isDivisibleBy(operand,i);
+			if (k = true && i > 1) {
+				operand = -2;
+			}
+			
+		}
+		return operand;
+	}
 }
+

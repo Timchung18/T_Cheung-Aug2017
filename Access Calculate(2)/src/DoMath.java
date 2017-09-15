@@ -30,12 +30,14 @@ public class DoMath {
 		System.out.println();
 		System.out.println(Calculate.max(3.0, 1.5, 1.5));
 		System.out.println(Calculate.max(1.0, 1.5, 1.5));
-		System.out.println(Calculate.max(3.0, 3.0, 1.5));*/
+		System.out.println(Calculate.max(3.0, 3.0, 1.5));
 		System.out.println(Calculate.min(3, 1));
 		System.out.println(Calculate.round2(1.578));
 		System.out.println(Calculate.round2(1.571));
-		System.out.println(Calculate.round2(0.999));
+		System.out.println(Calculate.round2(0.999));*/
 		System.out.println(Calculate.exponent(3, 4));
 		System.out.println(Calculate.factorial(9));
+		System.out.println(Calculate.isPrime(11));
+		System.out.println(Calculate.isDivisibleBy(7, 8));
 }
 }
