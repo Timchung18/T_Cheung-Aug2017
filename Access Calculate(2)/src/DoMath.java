@@ -37,7 +37,12 @@ public class DoMath {
 		System.out.println(Calculate.round2(0.999));*/
 		System.out.println(Calculate.exponent(3, 4));
 		System.out.println(Calculate.factorial(9));
-		System.out.println(Calculate.isPrime(11));
-		System.out.println(Calculate.isDivisibleBy(7, 8));
+		System.out.println(Calculate.isPrime(100));
+		System.out.println(Calculate.isPrime(19));
+		System.out.println(Calculate.isDivisibleBy(5, 1));
+		System.out.println(Calculate.gcf(50, 97));
+		System.out.println(Calculate.sqrt(6868));
+		System.out.println(Calculate.round2(8.888881111));
+		System.out.println(Calculate.max(3.0, 8.9, 30.0));
 }
 }

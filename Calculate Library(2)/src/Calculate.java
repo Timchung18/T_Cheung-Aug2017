@@ -86,13 +86,15 @@ public class Calculate {
 	
 	//This method overloads the previous method. This method accepts one more double than the other one
 	public static double max(double operandA, double operandB, double operandC) {
+		double answer = operandA;
 		if (operandA >= operandB && operandA >= operandC) {
-			operandC = operandA;
+			answer = operandA;
+		}else if (operandB >= operandC && operandB >= operandA) {
+			answer = operandB;
+		}else {
+			answer = operandC;
 		}
-		if (operandB >= operandC && operandB >= operandA) {
-			operandC = operandB;
-		}
-		return operandC;
+		return answer;
 	}
 	
 	//This method returns the smaller of the values passed
@@ -106,11 +108,12 @@ public class Calculate {
 	//This method rounds a double constantly to 2 decimal places and returns a double		
 	public static double round2(double operand) {
 		operand = operand * 1000;
-		int remainder = (int) operand % 10;
-		if (remainder >= 5) {
-			operand = (operand + 10 - remainder) / 1000;
+		operand = (int) operand;
+		int lastdigit = (int) (operand % 10);
+		if (lastdigit >= 5) {
+			operand = (operand + 10 - lastdigit) / 1000;
 		}else {
-			operand = (operand - remainder) / 1000;
+			operand = (operand - lastdigit) / 1000;
 		}
 		return operand;
 	}
@@ -136,17 +139,45 @@ public class Calculate {
 	}
 	
 	//This method determines whether or not an integer is prime
-	public static int isPrime(int operand) {
-		
-		for (int i = operand - 1; operand > 1 ; i--) {
+	public static boolean isPrime(int operand) {
+		boolean test = false;
+		int denominator = operand - 1;
+		boolean answer = false; 
+		while (test == false) {
+			test = isDivisibleBy(operand, denominator);
+			denominator --;
 			
-			boolean k = isDivisibleBy(operand,i);
-			if (k = true && i > 1) {
-				operand = -2;
-			}
-			
+		if (denominator == 0) {
+			answer = true;
 		}
-		return operand;
+		}
+		return answer;
+	}
+	
+	//This method finds the greatest common factor of two positive integers
+	public static int gcf(int operandX, int operandY) {
+		int operand2 = min(operandX, operandY);
+		int operand1 = (int) max(operandX, operandY);
+		if (isPrime(operand1)==true) {
+			operand1 = 1;
+		}
+		while (operand2 > 0) {
+			int modula = operand1 % operand2;
+			operand1 = operand2;
+			operand2 = modula;
+		}
+		return operand1;
+	}
+	
+	//This method returns an approximation of the square root of the value passed (using Newton's method), 
+	//rounded to two decimal places
+	public static double sqrt(double operand) {
+		double Aprox;
+		for (Aprox = 1; absValue((Aprox * Aprox)-operand) >= 0.005;) {
+			Aprox = 0.5*((operand/Aprox) + Aprox);
+		}
+		Aprox = round2(Aprox);
+		return Aprox;
 	}
 }
 
