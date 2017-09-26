@@ -65,6 +65,9 @@ public class Calculate {
 	
 	//This method determines whether or not 
 	public static boolean isDivisibleBy(int operand1, int operand2) {
+		if (operand2 == 0) {
+			throw new IllegalArgumentException("Can't divide a number by 0");
+		}
 		return (operand1 % operand2) == 0;
 	}
 	
@@ -120,6 +123,9 @@ public class Calculate {
 	
 	//This method raises a value to a positive integer power (assume that the integer is postitive
 	public static double exponent(double base, int power) {
+		if (power < 0) {
+			throw new IllegalArgumentException("Invalid power: this method only accepts positive powers");
+		}
 		double k = base;
 		double pretendbase = base;
 		for (int i = 1; i != power; i ++) {
@@ -131,6 +137,9 @@ public class Calculate {
 	
 	//This method returns the factorial of the value passed
 	public static int factorial(int operandx) {
+		if (operandx < 0) {
+			throw new IllegalArgumentException("Input is invalid. Can't find the factorial of a negative number");
+		}
 		int operand = operandx;
 		for (int i = 1; i < operand; i++) {
 			operandx = operandx * i;
@@ -172,6 +181,9 @@ public class Calculate {
 	//This method returns an approximation of the square root of the value passed (using Newton's method), 
 	//rounded to two decimal places
 	public static double sqrt(double operand) {
+		if (operand < 0) {
+			throw new IllegalArgumentException("The square root of a negative number is not accommodated");
+		}
 		double Aprox;
 		for (Aprox = 1; absValue((Aprox * Aprox)-operand) >= 0.005;) {
 			Aprox = 0.5*((operand/Aprox) + Aprox);
@@ -179,5 +191,14 @@ public class Calculate {
 		Aprox = round2(Aprox);
 		return Aprox;
 	}
+	
+	//This method uses the coefficients of a quadratic equation in standard form and uses the 
+	//quadratic formula to approximate the real roots, if any
+	public static String quadForm(int a, int b, int c) {
+		if (discriminant(a,b,c) < 0) {
+			return "no real roots";
+		}
+	}
+	
 }
 
