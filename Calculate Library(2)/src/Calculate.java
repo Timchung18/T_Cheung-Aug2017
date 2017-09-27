@@ -197,6 +197,8 @@ public class Calculate {
 	public static String quadForm(int a, int b, int c) {
 		if (discriminant(a,b,c) < 0) {
 			return "no real roots";
+		}else {
+		return "ok";
 		}
 	}
 	

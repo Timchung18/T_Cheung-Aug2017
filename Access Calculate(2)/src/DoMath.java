@@ -44,5 +44,6 @@ public class DoMath {
 		System.out.println(Calculate.sqrt(9));
 		System.out.println(Calculate.round2(8.888881111));
 		System.out.println(Calculate.max(3.0, 8.9, 30.0));
+		System.out.print("hi");
 }
 }
