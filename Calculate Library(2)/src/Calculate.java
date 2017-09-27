@@ -195,10 +195,18 @@ public class Calculate {
 	//This method uses the coefficients of a quadratic equation in standard form and uses the 
 	//quadratic formula to approximate the real roots, if any
 	public static String quadForm(int a, int b, int c) {
-		if (discriminant(a,b,c) < 0) {
+		String root1 = "0";
+		String root2 = "0";
+		double discrim = discriminant(a,b,c);
+		if (discrim < 0) {
 			return "no real roots";
+		}else if(discrim == 0) {
+			root1 = "" + ((-b) / (2.0 * a));
+			return root1;
 		}else {
-		return "ok";
+			root1 = "" + (((-b) + sqrt(discrim)) / (2 * a));
+			root2 = "" + (((-b) - sqrt(discrim)) / (2 * a));
+			return root1 + root2;
 		}
 	}
 	
