@@ -34,15 +34,15 @@ public class DoMath {
 		System.out.println(Calculate.min(3, 1));
 		System.out.println(Calculate.round2(1.578));
 		System.out.println(Calculate.round2(1.571));
-		System.out.println(Calculate.round2(0.999));*/
+		System.out.println(Calculate.round2(0.999));
 		System.out.println(Calculate.exponent(3, 9));
 		System.out.println(Calculate.factorial(0));
 		System.out.println(Calculate.isPrime(100));
 		System.out.println(Calculate.isPrime(19));
 		System.out.println(Calculate.isDivisibleBy(5, 1));
 		System.out.println(Calculate.gcf(50, 97));
-		System.out.println(Calculate.sqrt(9));
-		System.out.println(Calculate.round2(8.888881111));
+		System.out.println(Calculate.sqrt(9));*/
+		System.out.println(Calculate.round2(-8.88881111));
 		System.out.println(Calculate.max(3.0, 8.9, 30.0));
 		System.out.println(Calculate.quadForm(1, -4, -6));
 }
