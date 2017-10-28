@@ -9,7 +9,7 @@ public class QuadraticClient {
 	public static void main(String [] args) {
 		@SuppressWarnings("resource")
 		Scanner userinput = new Scanner(System.in);
-		System.out.println("Welcome to Tim's Quadratic Describer");
+		System.out.println("Welcome to Quadratic Describer");
 		String done = "no";
 		while (done.equals("no")) {
 			System.out.println("Provide values for coefficients a, b, and c\n");
@@ -21,9 +21,9 @@ public class QuadraticClient {
 			double c = userinput.nextDouble();
 			System.out.println();
 			System.out.println(Quadratic.quadrDescriber(a, b, c));
-			System.out.println("\nDo you want to keep going? (Type \"no\" to end or \"yes\" to keep going;)");
+			System.out.println("\nDo you want to keep going? (Type \"quit\" to end)");
 			String keepgoin = userinput.next();
-			if (keepgoin.equals("no")) {
+			if (keepgoin.equals("quit")) {
 				done = "yes";
 			}
 			System.out.println("");
