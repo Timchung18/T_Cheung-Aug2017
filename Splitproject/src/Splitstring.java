@@ -31,6 +31,7 @@ public class Splitstring {
 		
 		System.out.println(splitPart1("applespineapplesbreadlettucetomatobaconmayohambreadcheese"));
 		System.out.println(splitPart1("applesbreadlettucetomatobaconmayohambreadcheese"));
+		System.out.println(splitPart1("applespineapplesbreadlettucetomatobaconmayohambreadcheese"));
 	}
 
 		//Your task Part 1:
