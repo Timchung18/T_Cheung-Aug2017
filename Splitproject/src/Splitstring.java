@@ -30,6 +30,7 @@ public class Splitstring {
 		System.out.println(something);
 		
 		System.out.println(splitPart1("applespineapplesbreadlettucetomatobaconmayohambreadcheese"));
+		System.out.println(splitPart1("applesbreadlettucetomatobaconmayohambreadcheese"));
 	}
 
 		//Your task Part 1:
