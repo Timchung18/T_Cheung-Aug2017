@@ -65,6 +65,9 @@ public class Splitstring {
 		* What if it's a fancy sandwich with multiple pieces of bread?
 		*/
 	public static String splitPart1(String sandwitchstring) {
+		if (!sandwitchstring.contains("bread")) {
+			return "this is not a sandwitch";
+		}
 		sandwitchstring.split("bread");
 		String answer = "";
 		int length = sandwitchstring.split("bread").length - 1;
