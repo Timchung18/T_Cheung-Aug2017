@@ -1,3 +1,5 @@
+//Tim Cheung
+//APCS Period 1, 10/31/17
 import java.util.*;
 public class Splitstring {
 
