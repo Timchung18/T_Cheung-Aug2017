@@ -2,7 +2,7 @@ import java.util.*;
 public class Splitstring {
 
 	public static void main(String[] args) {
-		/*// Example: "I like apples!".split(" "); 
+		// Example: "I like apples!".split(" "); 
 //			it will split at spaces and return an array of ["I","like","apples!"]
 		System.out.println(Arrays.toString("I like apples!".split(" ")));
 		// Example 2: "I really like really red apples".split("really")
@@ -26,7 +26,7 @@ public class Splitstring {
 		//[I like apples!]
 		String something = "I like apples!".split("I")[0];
 		System.out.println(something);
-		*/
+		
 		System.out.println(Arrays.toString("applespineapplesbreadlettucetomatobaconmayohambreadcheese".split("bread")));
 		System.out.println(Arrays.toString("breadlettucetomatobaconmayohambreadcheese".split("bread")));
 		System.out.println(Arrays.toString("applespineapplesbreadlettucetomatobaconmayohamcheesebread".split("bread")));
@@ -46,11 +46,9 @@ public class Splitstring {
 		//bread, stuff1, bread = stuff1
 		System.out.println(splitPart1("breadlettucebreadhambread"));
 		//bred, stuff1, bread, stuff2, bread = stuff1, stuff2
-		System.out.println(splitPart1("breadlettucebreadhambreadjambread"));
-		
-		//System.out.println(splitPart1(""));
-		//System.out.println("no");
-		//System.out.println(splitPart1("apples pineapples bread lettuce tomato bacon mayo ham bread cheese"));
+		System.out.println(splitPart1("breadmayobreadbreadjambreadpickle"));
+		System.out.println(splitPart1("pickle"));
+		System.out.println(splitPart1(""));
 		System.out.println();
 		
 		System.out.println(splitPart2("apples bread pineapples bread lettuce tomato bacon mayo ham bread cheese"));
@@ -65,7 +63,7 @@ public class Splitstring {
 		* What if it's a fancy sandwich with multiple pieces of bread?
 		*/
 	public static String splitPart1(String sandwitchstring) {
-		if (!sandwitchstring.contains("bread")) {
+		if (!sandwitchstring.contains("bread")||sandwitchstring.contains("breadbread")) {
 			return "this is not a sandwitch";
 		}
 		sandwitchstring.split("bread");
