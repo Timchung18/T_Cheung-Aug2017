@@ -35,43 +35,41 @@ public class FracCalc {
     	// TODO: Implement this function to produce the solution to the input
     	String [] inputarray = input.split(" ");
     	String firstoperand = inputarray[0];
+    	String operator = inputarray[1];
     	String secondoperand = inputarray[2];
-    	String [] fraction1 = firstoperand.split("_");
-    	String [] fraction2 = secondoperand.split("_");
     	
-    	String wholenum1 = fraction1[0];
-    	String firstnumrtr = "";
-    	String firstdenom = "";
-    	String wholenum2 = fraction2[0];
-    	String secnumrtr = "";
-    	String secdenom = "";
-    	if(fraction1[0].length()>1 && fraction1.length > 1) {
-    	if (!fraction1[0].contains("/")) {
-    		wholenum1 = fraction1[0];
-    		String [] firstfrac = fraction1[1].split("/");
-    		firstnumrtr = firstfrac[0];
-    		firstdenom = firstfrac[1];
-    	}else {
-    		String []firstfrac = fraction1[0].split("/");
-    		firstnumrtr = firstfrac[0];
-    		firstdenom = firstfrac[1];
+    	String [] fraction1 = firstoperand.split("_");
+    	String num1 = fraction1[0];
+    	String fracofmxnum1 = "";
+    	String fomnnumt1 = "";
+    	String fomndeno1 = "";
+    	if(fraction1.length==2) {
+    		 fracofmxnum1 = fraction1[1];
+    		 fracofmxnum1.split("/");
+    		 fomnnumt1 = fracofmxnum1.split("/")[0];
+    		 fomndeno1 = fracofmxnum1.split("/")[1];
+    	}else if (num1.contains("/")){//check to see if the first number is a fraction or a whole number?
+    		fomnnumt1 = num1.split("/")[0];
+    		fomndeno1 = num1.split("/")[1];
     	}
+    	
+    	String [] fraction2 = secondoperand.split("_");
+    	String num2 = fraction2[0];
+    	String fracofmxnum2 = "";
+    	String fomnnumt2 = "";
+    	String fomndeno2 = "";
+    	if (fraction2.length == 2) {
+    		fracofmxnum2 = fraction2[1];
+    		fracofmxnum2.split("/");
+    		fomnnumt2 = fracofmxnum2.split("/")[0];
+    		fomndeno2 = fracofmxnum2.split("/")[1];
+    	}else if (num2.contains("/")){//check to see if the first number is a fraction or a whole number?
+    		fomnnumt2 = num2.split("/")[0];
+    		fomndeno2 = num2.split("/")[1];
     	}
-    	if (fraction2[0].length()>1) {
-    	if (!fraction2[0].contains("/")&& fraction2.length>1) {
-    		wholenum2 = fraction2[0];
-    		String [] secfrac = fraction2[1].split("/");
-    		secnumrtr = secfrac[0];
-    		secdenom = secfrac[1];
-    	}else {
-    		String []secfrac = fraction2[0].split("/");
-    		secnumrtr = secfrac[0];
-    		secdenom = secfrac[1];
-    	}
-    	}
-    	String part1 = wholenum1 + "\n" + firstnumrtr + "\n" + firstdenom;
-    	String part2 = wholenum2 + "\n" + secnumrtr + "\n" + secdenom;
-    	return part1 + part2;
+    	return "";
+    	
+    	
     	
     	
     	
