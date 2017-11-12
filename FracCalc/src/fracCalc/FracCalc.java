@@ -43,14 +43,21 @@ public class FracCalc {
     	String fracofmxnum1 = "";
     	String fomnnumt1 = "";
     	String fomndeno1 = "";
+    	int numerator1 = 0;
+    	int denominator1 = 0;
     	if(fraction1.length==2) {
     		 fracofmxnum1 = fraction1[1];
     		 fracofmxnum1.split("/");
     		 fomnnumt1 = fracofmxnum1.split("/")[0];
     		 fomndeno1 = fracofmxnum1.split("/")[1];
+    		 numerator1 = toNumber(fomnnumt1);
+     		 denominator1 = toNumber(fomndeno1);    		
     	}else if (num1.contains("/")){//check to see if the first number is a fraction or a whole number?
     		fomnnumt1 = num1.split("/")[0];
     		fomndeno1 = num1.split("/")[1];
+    		denominator1 = toNumber(fomndeno1);
+    		numerator1 = toNumber(fomnnumt1);
+    		
     	}
     	
     	String [] fraction2 = secondoperand.split("_");
@@ -58,41 +65,49 @@ public class FracCalc {
     	String fracofmxnum2 = "";
     	String fomnnumt2 = "";
     	String fomndeno2 = "";
+    	int denominator2 = 0;
+    	int numerator2 = 0;
     	if (fraction2.length == 2) {
     		fracofmxnum2 = fraction2[1];
     		fracofmxnum2.split("/");
     		fomnnumt2 = fracofmxnum2.split("/")[0];
     		fomndeno2 = fracofmxnum2.split("/")[1];
+    		numerator2 = toNumber(fomnnumt2);
+    		denominator2 = toNumber(fomndeno2);
     	}else if (num2.contains("/")){//check to see if the first number is a fraction or a whole number?
     		fomnnumt2 = num2.split("/")[0];
     		fomndeno2 = num2.split("/")[1];
+    		denominator2 = toNumber(fomndeno2);
+    		numerator2 = toNumber(fomnnumt2);
+    		
     	}
+    	int number1 = 0;
+    	if (!num1.contains("/")){
+    		number1 = toNumber(num1);
+    	}
+    	int number2 = 0;
+    	if (!num2.contains("/")) {
+    	number2 = toNumber(num2);
+    	}
+    	String thing = "";
+    	
+    	if (firstoperand.contains("_")) {
+    	thing = toImproperFrac(number1,numerator1,denominator1);
+    	thing.split("/");
+    	numerator1 = toNumber(thing.split("/")[0]);
+    	denominator1 = toNumber(thing.split("/")[1]);
+    	}
+    	
+    	number2 = number2 + number1;
     	return "";
     	
+       	
     	
-    	
-    	
-    	
-    	
-    	/*
-        String [] strinputarr = new String [input.length()];
-        for(int i = 0; i < strinputarr.length; i ++) {
-        	strinputarr[i]= ""+ input.charAt(i);
-        }
-        
-        
-       // String firstoperand = input.substring(0, space); 
-        int[] firstnumarr = new int [firstoperand.length()];
-        
-        return "";*/
     }
 
     // TODO: Fill in the space below with any helper methods that you think you will need
     /*
-     * public static String toImproperFrac(int wholenumber, int numerator, int denominator) {
-		int top;
-		top = ((wholenumber*denominator) + numerator);
-		return (top + "/" + denominator);
+     *
 	}
 	public static String toMixedNum (int numerator, int denominator) {
 		int newnumerator = numerator%denominator;
@@ -101,14 +116,30 @@ public class FracCalc {
 	}
      */
     public static int toNumber(String numberstr) {
+    	int negsign = 1;
+    	if (numberstr.contains("-")) {
+    		numberstr = numberstr.substring(1);
+    		negsign = -1;
+    	}
     	int i = 0;
     	while (i >= 0) {
     		String j = "" + i;
     		if (numberstr.equals(j)) {
-    			return i;
+    			return i* negsign;
     		}
     		i ++;
     	}
     	return 0;
     }
+    public static String toImproperFrac(int wholenumber, int numerator, int denominator) {
+    	int multiplier = 1;
+    	if (wholenumber<0) {
+    		wholenumber*= -1;
+    		multiplier = -1;
+    	}
+		int top;
+		top = multiplier * ((wholenumber*denominator) + numerator);
+		
+		return (top + "/" + denominator);
+		}
 }
