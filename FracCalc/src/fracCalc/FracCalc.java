@@ -4,20 +4,23 @@ public class FracCalc {
 
     public static void main(String[] args) 
     {
-        // TODO: Read the input from the user and call produceAnswer with an equation
-    	boolean done = false;
+    	/*boolean done = false;
     	while (done==false) {
     	System.out.println("Enter the two operands that you want to add, subtract, multiply, or divide");
     	@SuppressWarnings("resource")
 		Scanner userinput = new Scanner(System.in);
     	String inputstr = userinput.nextLine();
     	System.out.println(produceAnswer(inputstr));
-    	System.out.println("Type \"quit\" to stop or yes to keep going.");
+    	System.out.println("Type \"quit\" to stop or \"yes\" to keep going.");
     	String keepgoin = userinput.next();
     	if (keepgoin.equals("quit")) {
     		done = true;
     	}
-    	}
+    	}*/
+    	Scanner userinput = new Scanner(System.in);
+    	String inputstr = userinput.nextLine();
+    	System.out.println(produceAnswer(inputstr));
+    	
     	
     }
     
@@ -37,8 +40,8 @@ public class FracCalc {
     	String firstoperand = inputarray[0];
     	String operator = inputarray[1];
     	String secondoperand = inputarray[2];
-    	
-    	String [] fraction1 = firstoperand.split("_");
+    	return secondoperand;
+    	/*String [] fraction1 = firstoperand.split("_");
     	String num1 = fraction1[0];
     	String fracofmxnum1 = "";
     	String fomnnumt1 = "";
@@ -100,7 +103,7 @@ public class FracCalc {
     	
     	number2 = number2 + number1;
     	return "";
-    	
+    	*/
        	
     	
     }
