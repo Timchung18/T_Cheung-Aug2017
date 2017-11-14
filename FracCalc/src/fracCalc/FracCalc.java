@@ -40,30 +40,12 @@ public class FracCalc {
     	String firstoperand = inputarray[0];
     	String operator = inputarray[1];
     	String secondoperand = inputarray[2];
-    	return secondoperand;
-    	/*String [] fraction1 = firstoperand.split("_");
-    	String num1 = fraction1[0];
-    	String fracofmxnum1 = "";
-    	String fomnnumt1 = "";
-    	String fomndeno1 = "";
-    	int numerator1 = 0;
-    	int denominator1 = 0;
-    	if(fraction1.length==2) {
-    		 fracofmxnum1 = fraction1[1];
-    		 fracofmxnum1.split("/");
-    		 fomnnumt1 = fracofmxnum1.split("/")[0];
-    		 fomndeno1 = fracofmxnum1.split("/")[1];
-    		 numerator1 = toNumber(fomnnumt1);
-     		 denominator1 = toNumber(fomndeno1);    		
-    	}else if (num1.contains("/")){//check to see if the first number is a fraction or a whole number?
-    		fomnnumt1 = num1.split("/")[0];
-    		fomndeno1 = num1.split("/")[1];
-    		denominator1 = toNumber(fomndeno1);
-    		numerator1 = toNumber(fomnnumt1);
-    		
-    	}
+    	String [] splitted = splitOperand(secondoperand);
+    	String checktwo = "whole:" + splitted[0] + " numerator:" + splitted[1] + " denominator:" + splitted[2];
+    	return checktwo;
     	
-    	String [] fraction2 = secondoperand.split("_");
+    	
+    	/*String [] fraction2 = secondoperand.split("_");
     	String num2 = fraction2[0];
     	String fracofmxnum2 = "";
     	String fomnnumt2 = "";
@@ -81,8 +63,7 @@ public class FracCalc {
     		fomnnumt2 = num2.split("/")[0];
     		fomndeno2 = num2.split("/")[1];
     		denominator2 = toNumber(fomndeno2);
-    		numerator2 = toNumber(fomnnumt2);
-    		
+    		numerator2 = toNumber(fomnnumt2);	
     	}
     	int number1 = 0;
     	if (!num1.contains("/")){
@@ -145,4 +126,33 @@ public class FracCalc {
 		
 		return (top + "/" + denominator);
 		}
+    public static String[] splitOperand(String operand) {
+    	String wholenum = "0";
+    	String numerator = "0";
+    	String denominator = "1";
+    	String [] fraction = operand.split("_");
+    	wholenum = fraction[0];
+    	String fracofmxnum = "";
+    	int numerator1 = 0;
+    	int denominator1 = 0;
+    	if(fraction.length==2) {
+    		 fracofmxnum = fraction[1];
+    		 fracofmxnum.split("/");
+    		 numerator = fracofmxnum.split("/")[0];
+    		 denominator = fracofmxnum.split("/")[1];
+    		 numerator1 = toNumber(numerator);
+     		 denominator1 = toNumber(denominator);    		
+    	}else if (wholenum.contains("/")){//check to see if the first number is a fraction or a whole number?
+    		numerator = wholenum.split("/")[0];
+    		denominator = wholenum.split("/")[1];
+    		wholenum = "0";
+    		denominator1 = toNumber(denominator);
+    		numerator1 = toNumber(numerator);
+    	}
+    	String [] check2 = new String[3];
+    	check2 [0]= wholenum;
+    	check2 [1]= numerator;
+    	check2 [2]= denominator;
+    	return check2;
+    }
 }
