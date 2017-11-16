@@ -40,8 +40,11 @@ public class FracCalc {
     	String firstoperand = inputarray[0];
     	String operator = inputarray[1];
     	String secondoperand = inputarray[2];
-    	String [] splitted = splitOperand(secondoperand);
-    	String checktwo = "whole:" + splitted[0] + " numerator:" + splitted[1] + " denominator:" + splitted[2];
+    	String [] split1 = splitOperand(firstoperand);
+    	String [] split2 = splitOperand(secondoperand);
+    	
+    	
+    	String checktwo = "whole:" + split2[0] + " numerator:" + split2[1] + " denominator:" + split2[2];
     	return checktwo;
     	
     	
