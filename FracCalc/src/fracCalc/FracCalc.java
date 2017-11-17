@@ -40,8 +40,17 @@ public class FracCalc {
     	String firstoperand = inputarray[0];
     	String operator = inputarray[1];
     	String secondoperand = inputarray[2];
-    	String [] split1 = splitOperand(firstoperand);
-    	String [] split2 = splitOperand(secondoperand);
+    	String [] split1 = splitOperand(firstoperand);//[whole num, numerator, denominator] strings
+    	String [] split2 = splitOperand(secondoperand); // negative cases: -3_1/3, -4, -3/5 numerator or whole number is always negative
+    	int [] operand1 = new int[3];
+    	for (int i = 0; i< split1.length; i++) {
+    		operand1[i]= toNumber(split1[i]);
+    	}
+    	int []operand2 = new int[3];
+    	for (int i = 0; i < split2.length; i++) {
+    		operand2[i] = toNumber(split2[i]);
+    	}//possible cases: [-3, 1, 3]; [-4, 0, 1]; [0, -3, 5]
+    	
     	
     	
     	String checktwo = "whole:" + split2[0] + " numerator:" + split2[1] + " denominator:" + split2[2];
@@ -136,26 +145,28 @@ public class FracCalc {
     	String [] fraction = operand.split("_");
     	wholenum = fraction[0];
     	String fracofmxnum = "";
-    	int numerator1 = 0;
-    	int denominator1 = 0;
     	if(fraction.length==2) {
     		 fracofmxnum = fraction[1];
     		 fracofmxnum.split("/");
     		 numerator = fracofmxnum.split("/")[0];
-    		 denominator = fracofmxnum.split("/")[1];
-    		 numerator1 = toNumber(numerator);
-     		 denominator1 = toNumber(denominator);    		
+    		 denominator = fracofmxnum.split("/")[1];   		
     	}else if (wholenum.contains("/")){//check to see if the first number is a fraction or a whole number?
     		numerator = wholenum.split("/")[0];
     		denominator = wholenum.split("/")[1];
     		wholenum = "0";
-    		denominator1 = toNumber(denominator);
-    		numerator1 = toNumber(numerator);
     	}
-    	String [] check2 = new String[3];
-    	check2 [0]= wholenum;
-    	check2 [1]= numerator;
-    	check2 [2]= denominator;
-    	return check2;
+    	String [] splitted = new String[3];
+    	splitted [0]= wholenum;
+    	splitted [1]= numerator;
+    	splitted [2]= denominator;
+    	return splitted;
     }
+    public static void commonDenom(int arr1[], int arr2[]) {
+    	arr1[0] = arr2[1] * arr1[0];
+    	arr2[0] = arr1[1]*arr2[0];
+    	int denom = arr1[1];
+    	arr1[1] = arr1[1]*arr2[1];
+    	arr2[1] = denom * arr2[1]; //Should I return a new array?
+    }
+    
 }
