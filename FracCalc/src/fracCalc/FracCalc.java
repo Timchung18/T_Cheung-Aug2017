@@ -34,69 +34,30 @@ public class FracCalc {
     //      e.g. return ==> "1_1/4"
     public static String produceAnswer(String input)
     { 
-        
-    	// TODO: Implement this function to produce the solution to the input
     	String [] inputarray = input.split(" ");
     	String firstoperand = inputarray[0];
     	String operator = inputarray[1];
     	String secondoperand = inputarray[2];
     	String [] split1 = splitOperand(firstoperand);//[whole num, numerator, denominator] strings
     	String [] split2 = splitOperand(secondoperand); // negative cases: -3_1/3, -4, -3/5 numerator or whole number is always negative
-    	int [] operand1 = new int[3];
+    	int [] opernums1 = new int[3];
     	for (int i = 0; i< split1.length; i++) {
-    		operand1[i]= toNumber(split1[i]);
+    		opernums1[i]= toNumber(split1[i]);
     	}
-    	int []operand2 = new int[3];
+    	int []opernums2 = new int[3];
     	for (int i = 0; i < split2.length; i++) {
-    		operand2[i] = toNumber(split2[i]);
+    		opernums2[i] = toNumber(split2[i]);
     	}//possible cases: [-3, 1, 3]; [-4, 0, 1]; [0, -3, 5]
+    	//Turn operand1/2 into improper fractions
+    	int[] operand1 = new int[2];
+    	int[] operand2 = new int[2];
+    	//operand1 = toImproperFrac(numbers1[0], numbers1[1], numbers1[2]);
+    	operand1=toImproperFrac(opernums1);
+    	operand2=toImproperFrac(opernums2);
+    	int[] answer = new int[2];
     	
-    	
-    	
-    	String checktwo = "whole:" + split2[0] + " numerator:" + split2[1] + " denominator:" + split2[2];
-    	return checktwo;
-    	
-    	
-    	/*String [] fraction2 = secondoperand.split("_");
-    	String num2 = fraction2[0];
-    	String fracofmxnum2 = "";
-    	String fomnnumt2 = "";
-    	String fomndeno2 = "";
-    	int denominator2 = 0;
-    	int numerator2 = 0;
-    	if (fraction2.length == 2) {
-    		fracofmxnum2 = fraction2[1];
-    		fracofmxnum2.split("/");
-    		fomnnumt2 = fracofmxnum2.split("/")[0];
-    		fomndeno2 = fracofmxnum2.split("/")[1];
-    		numerator2 = toNumber(fomnnumt2);
-    		denominator2 = toNumber(fomndeno2);
-    	}else if (num2.contains("/")){//check to see if the first number is a fraction or a whole number?
-    		fomnnumt2 = num2.split("/")[0];
-    		fomndeno2 = num2.split("/")[1];
-    		denominator2 = toNumber(fomndeno2);
-    		numerator2 = toNumber(fomnnumt2);	
-    	}
-    	int number1 = 0;
-    	if (!num1.contains("/")){
-    		number1 = toNumber(num1);
-    	}
-    	int number2 = 0;
-    	if (!num2.contains("/")) {
-    	number2 = toNumber(num2);
-    	}
-    	String thing = "";
-    	
-    	if (firstoperand.contains("_")) {
-    	thing = toImproperFrac(number1,numerator1,denominator1);
-    	thing.split("/");
-    	numerator1 = toNumber(thing.split("/")[0]);
-    	denominator1 = toNumber(thing.split("/")[1]);
-    	}
-    	
-    	number2 = number2 + number1;
-    	return "";
-    	*/
+    	//String checktwo = "whole:" + split2[0] + " numerator:" + split2[1] + " denominator:" + split2[2];
+    	return Arrays.toString(operand1) + Arrays.toString(operand2);
        	
     	
     }
@@ -127,16 +88,16 @@ public class FracCalc {
     	}
     	return 0;
     }
-    public static String toImproperFrac(int wholenumber, int numerator, int denominator) {
+    public static int[] toImproperFrac(int[] arr) {
     	int multiplier = 1;
-    	if (wholenumber<0) {
-    		wholenumber*= -1;
+    	if (arr[0]<0) {
+    		arr[0]*= -1;
     		multiplier = -1;
     	}
 		int top;
-		top = multiplier * ((wholenumber*denominator) + numerator);
-		
-		return (top + "/" + denominator);
+		top = multiplier * ((arr[0]*arr[2]) + arr[1]);
+		int [] impropfrac = {top, arr[2]};
+		return impropfrac;
 		}
     public static String[] splitOperand(String operand) {
     	String wholenum = "0";
@@ -168,5 +129,16 @@ public class FracCalc {
     	arr1[1] = arr1[1]*arr2[1];
     	arr2[1] = denom * arr2[1]; //Should I return a new array?
     }
-    
+    public static void addOrsubtract(int[]arr1, int[]arr2, int[]answer, String operator) {
+    	commonDenom(arr1,arr2);
+    	if (operator.equals("-")) {
+    		arr2[0]=arr2[0]*(-1);
+    	}
+    	answer[0] = arr1[0] + arr2[0];
+    	answer[1] = arr1[1];    	
+    	
+    }
+    public static void multiplyOrdivide(int[]arr1, int[]arr2) {
+    	
+    }
 }
