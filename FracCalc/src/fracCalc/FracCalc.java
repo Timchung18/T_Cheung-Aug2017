@@ -20,8 +20,7 @@ public class FracCalc {
     	Scanner userinput = new Scanner(System.in);
     	String inputstr = userinput.nextLine();
     	System.out.println(produceAnswer(inputstr));
-    	
-    	
+ 
     }
     
     // ** IMPORTANT ** DO NOT DELETE THIS FUNCTION.  This function will be used to test your code
@@ -56,10 +55,15 @@ public class FracCalc {
     	operand2=toImproperFrac(opernums2);
     	int[] answer = new int[2];
     	
-    	//String checktwo = "whole:" + split2[0] + " numerator:" + split2[1] + " denominator:" + split2[2];
-    	return Arrays.toString(operand1) + Arrays.toString(operand2);
-       	
+    	if (operator.equals("+")||operator.equals("-")) {
+    		addOrsubtract(operand1,operand2,answer,operator);
+    	}else {
+    		multiplyOrdivide(operand1,operand2, answer, operator);
+    	}
     	
+    	String ans = "" + answer[0] + "/" + answer[1];
+    	//String checktwo = "whole:" + split2[0] + " numerator:" + split2[1] + " denominator:" + split2[2];
+    	return ans;
     }
 
     // TODO: Fill in the space below with any helper methods that you think you will need
@@ -135,10 +139,15 @@ public class FracCalc {
     		arr2[0]=arr2[0]*(-1);
     	}
     	answer[0] = arr1[0] + arr2[0];
-    	answer[1] = arr1[1];    	
-    	
+    	answer[1] = arr1[1];    
     }
-    public static void multiplyOrdivide(int[]arr1, int[]arr2) {
-    	
+    public static void multiplyOrdivide(int[]arr1, int[]arr2, int[] answer, String operator) {
+    	if (operator.equals("/")) {
+    		int save = arr2[0];
+    		arr2[0]= arr2[1];
+    		arr2[1]= save;
+    	}
+    	answer[0]= arr1[0] * arr2[0];
+    	answer[1]= arr1[1] * arr2[1];
     }
 }
