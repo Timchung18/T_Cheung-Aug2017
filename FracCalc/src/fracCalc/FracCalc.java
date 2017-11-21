@@ -150,4 +150,35 @@ public class FracCalc {
     	answer[0]= arr1[0] * arr2[0];
     	answer[1]= arr1[1] * arr2[1];
     }
+    //this method returns the greatest common factor between the numerator and the denominator
+    public static int findGCF(int numerator, int denominator) {
+		if (isPrime(denominator)==true) {
+			return 1;
+		}
+		while (numerator > 0) {
+			int modula = denominator % numerator;
+			denominator = numerator;
+			numerator = modula;
+		}
+		return denominator;
+	}
+	
+	public static boolean isPrime(int operand) {
+		boolean test = false;
+		int denominator = operand - 1;
+		while (test == false) {
+			test = ((operand%denominator)==0);
+			denominator --;
+			if (denominator == 0) {
+			return true;
+		}
+		}
+		return false;
+	}
+	public static void reduce(int[]arr) {
+		int gcf = findGCF(arr[0], arr[1]);
+		arr[0] = arr[0] / gcf;
+		arr[1] = arr[1] / gcf;
+	}
+	
 }
