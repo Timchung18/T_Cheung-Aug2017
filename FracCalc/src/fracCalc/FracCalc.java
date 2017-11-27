@@ -92,15 +92,15 @@ public class FracCalc {
     	}
     	return 0;
     }
-    public static int[] toImproperFrac(int[] arr) {
+    public static int[] toImproperFrac(int[] mixednum) {
     	int multiplier = 1;
-    	if (arr[0]<0) {
-    		arr[0]*= -1;
+    	if (mixednum[0]<0) {
+    		mixednum[0] *= -1;
     		multiplier = -1;
     	}
 		int top;
-		top = multiplier * ((arr[0]*arr[2]) + arr[1]);
-		int [] impropfrac = {top, arr[2]};
+		top = multiplier * ((mixednum[0] * mixednum[2]) + mixednum[1]);
+		int [] impropfrac = {top, mixednum[2]};
 		return impropfrac;
 		}
     public static String[] splitOperand(String operand) {
@@ -126,30 +126,33 @@ public class FracCalc {
     	splitted [2]= denominator;
     	return splitted;
     }
-    public static void commonDenom(int arr1[], int arr2[]) {
-    	arr1[0] = arr2[1] * arr1[0];
-    	arr2[0] = arr1[1]*arr2[0];
-    	int denom = arr1[1];
-    	arr1[1] = arr1[1]*arr2[1];
-    	arr2[1] = denom * arr2[1]; //Should I return a new array?
+    public static void commonDenom(int operand1[], int operand2[]) {
+    	operand1[0] = operand2[1] * operand1[0];
+    	operand2[0] = operand1[1] * operand2[0];
+    	int denom = operand1[1];
+    	operand1[1] = operand1[1] * operand2[1];
+    	operand2[1] = denom * operand2[1]; 
     }
-    public static void addOrsubtract(int[]arr1, int[]arr2, int[]answer, String operator) {
-    	commonDenom(arr1,arr2);
+    
+    public static void addOrsubtract(int[]operand1, int[]operand2, int[]answer, String operator) {
+    	commonDenom(operand1,operand2);
     	if (operator.equals("-")) {
-    		arr2[0]=arr2[0]*(-1);
+    		operand2[0] = operand2[0] * (-1);
     	}
-    	answer[0] = arr1[0] + arr2[0];
-    	answer[1] = arr1[1];    
+    	answer[0] = operand1[0] + operand2[0];
+    	answer[1] = operand1[1];    
     }
-    public static void multiplyOrdivide(int[]arr1, int[]arr2, int[] answer, String operator) {
+    
+    public static void multiplyOrdivide(int[]operand1, int[]operand2, int[] answer, String operator) {
     	if (operator.equals("/")) {
-    		int save = arr2[0];
-    		arr2[0]= arr2[1];
-    		arr2[1]= save;
+    		int save = operand2[0];
+    		operand2[0]= operand2[1];
+    		operand2[1]= save;
     	}
-    	answer[0]= arr1[0] * arr2[0];
-    	answer[1]= arr1[1] * arr2[1];
+    	answer[0]= operand1[0] * operand2[0];
+    	answer[1]= operand1[1] * operand2[1];
     }
+    
     //this method returns the greatest common factor between the numerator and the denominator
     public static int findGCF(int numerator, int denominator) {
 		if (isPrime(denominator)==true) {
@@ -175,10 +178,16 @@ public class FracCalc {
 		}
 		return false;
 	}
-	public static void reduce(int[]arr) {
-		int gcf = findGCF(arr[0], arr[1]);
-		arr[0] = arr[0] / gcf;
-		arr[1] = arr[1] / gcf;
+	public static void reduce(int[]fraction) {
+		int gcf = findGCF(fraction[0], fraction[1]);
+		fraction[0] = fraction[0] / gcf;
+		fraction[1] = fraction[1] / gcf;
+	}
+	
+	public static String toMixedNum (int[] improperfrac) {
+		int newnumerator = improperfrac[0] % improperfrac[1];
+		int wholenumber = improperfrac[0] / improperfrac[1];
+		return (wholenumber + "_" + newnumerator +  "/" + improperfrac[1]);
 	}
 	
 }
