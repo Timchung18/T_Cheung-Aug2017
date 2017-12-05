@@ -2,9 +2,8 @@ package fracCalc;
 import java.util.*;
 public class FracCalc {
 
-    public static void main(String[] args) 
-    {
-    	/*boolean done = false;
+    public static void main(String[] args) {
+    	boolean done = false;
     	while (done==false) {
     	System.out.println("Enter the two operands that you want to add, subtract, multiply, or divide");
     	@SuppressWarnings("resource")
@@ -16,29 +15,36 @@ public class FracCalc {
     	if (keepgoin.equals("quit")) {
     		done = true;
     	}
-    	}*/
-    	Scanner userinput = new Scanner(System.in);
-    	String inputstr = userinput.nextLine();
-    	System.out.println(produceAnswer(inputstr));
- 
+    	}
     }
     
-    // ** IMPORTANT ** DO NOT DELETE THIS FUNCTION.  This function will be used to test your code
-    // This function takes a String 'input' and produces the result
-    //
-    // input is a fraction string that needs to be evaluated.  For your program, this will be the user input.
-    //      e.g. input ==> "1/2 + 3/4"
-    //        
-    // The function should return the result of the fraction after it has been calculated
-    //      e.g. return ==> "1_1/4"
-    public static String produceAnswer(String input)
-    { 
+    public static String produceAnswer(String input) {
+    	if (input.contains("/0")) {
+    		return "ERROR: cannot divide by zero";
+    	}
     	String [] inputarray = input.split(" ");
-    	String firstoperand = inputarray[0];
-    	String operator = inputarray[1];
-    	String secondoperand = inputarray[2];
+    	String [] operands = new String[(inputarray.length +1) /2];
+    	for (int i=0; i < operands.length; i++) {
+    		operands[i] = inputarray[i*2];
+    	}
+    	String [] operators = new String[inputarray.length/2];
+    	for (int i = 0; i<operators.length; i++) {
+    		operators[i] = inputarray[i*2 + 1];
+    		if(operators[i].length() > 1){
+    			return "ERROR: cannot do that";
+    		}
+    	}
+    	String result = calculate(operators[0], operands[0], operands[1]);
+    	for(int i =1; i<operators.length; i++) {
+    		result = calculate(operators[i], result, operands[i+1]);
+    	}
+    	
+    	return result;
+    }
+    public static String calculate(String operator, String firstoperand, String secondoperand){ 
     	String [] split1 = splitOperand(firstoperand);//[whole num, numerator, denominator] strings
-    	String [] split2 = splitOperand(secondoperand); // negative cases: -3_1/3, -4, -3/5 numerator or whole number is always negative
+    	String [] split2 = splitOperand(secondoperand); 
+    	
     	int [] opernums1 = new int[3];
     	for (int i = 0; i< split1.length; i++) {
     		opernums1[i]= toNumber(split1[i]);
@@ -46,36 +52,23 @@ public class FracCalc {
     	int []opernums2 = new int[3];
     	for (int i = 0; i < split2.length; i++) {
     		opernums2[i] = toNumber(split2[i]);
-    	}//possible cases: [-3, 1, 3]; [-4, 0, 1]; [0, -3, 5]
-    	//Turn operand1/2 into improper fractions
+    	}
     	int[] operand1 = new int[2];
     	int[] operand2 = new int[2];
-    	//operand1 = toImproperFrac(numbers1[0], numbers1[1], numbers1[2]);
     	operand1=toImproperFrac(opernums1);
     	operand2=toImproperFrac(opernums2);
-    	int[] answer = new int[2];
     	
+    	//doing the actual calculating
+    	int[] answer = new int[2];    	
     	if (operator.equals("+")||operator.equals("-")) {
     		addOrsubtract(operand1,operand2,answer,operator);
     	}else {
     		multiplyOrdivide(operand1,operand2, answer, operator);
     	}
     	
-    	String ans = "" + answer[0] + "/" + answer[1];
-    	//String checktwo = "whole:" + split2[0] + " numerator:" + split2[1] + " denominator:" + split2[2];
-    	return ans;
+    	return simplifyAndToString(answer);
     }
-
-    // TODO: Fill in the space below with any helper methods that you think you will need
-    /*
-     *
-	}
-	public static String toMixedNum (int numerator, int denominator) {
-		int newnumerator = numerator%denominator;
-		int wholenumber = (numerator - newnumerator) / denominator;
-		return (wholenumber + "_" + newnumerator +  "/" + denominator);
-	}
-     */
+    
     public static int toNumber(String numberstr) {
     	int negsign = 1;
     	if (numberstr.contains("-")) {
@@ -92,17 +85,18 @@ public class FracCalc {
     	}
     	return 0;
     }
+    
     public static int[] toImproperFrac(int[] mixednum) {
     	int multiplier = 1;
     	if (mixednum[0]<0) {
-    		mixednum[0] *= -1;
     		multiplier = -1;
     	}
-		int top;
-		top = multiplier * ((mixednum[0] * mixednum[2]) + mixednum[1]);
+		int top = ((absValue(mixednum[0]) * mixednum[2]) + mixednum[1]);
+		top *= multiplier;
 		int [] impropfrac = {top, mixednum[2]};
 		return impropfrac;
-		}
+	}
+    
     public static String[] splitOperand(String operand) {
     	String wholenum = "0";
     	String numerator = "0";
@@ -126,12 +120,12 @@ public class FracCalc {
     	splitted [2]= denominator;
     	return splitted;
     }
+    
     public static void commonDenom(int operand1[], int operand2[]) {
     	operand1[0] = operand2[1] * operand1[0];
     	operand2[0] = operand1[1] * operand2[0];
-    	int denom = operand1[1];
     	operand1[1] = operand1[1] * operand2[1];
-    	operand2[1] = denom * operand2[1]; 
+    	operand2[1] = operand1[1]; 
     }
     
     public static void addOrsubtract(int[]operand1, int[]operand2, int[]answer, String operator) {
@@ -146,6 +140,10 @@ public class FracCalc {
     public static void multiplyOrdivide(int[]operand1, int[]operand2, int[] answer, String operator) {
     	if (operator.equals("/")) {
     		int save = operand2[0];
+    		if (operand2[0]<0) {
+    			save*= (-1);
+    			operand2[1] *= (-1);
+    		}
     		operand2[0]= operand2[1];
     		operand2[1]= save;
     	}
@@ -153,6 +151,28 @@ public class FracCalc {
     	answer[1]= operand1[1] * operand2[1];
     }
     
+    public static int absValue (int numerator) { 
+		if (numerator < 0) {
+			numerator = numerator * -1; 
+		}
+		return numerator;
+	}
+    
+    public static String simplifyAndToString(int[] answer) {
+    	if (answer[0] % answer[1] == 0) {
+    		return "" + answer[0]/answer[1];
+    	}else if(absValue(answer[0]) > answer[1]) {
+    		return toMixedNum(answer);
+    	}else if (absValue(answer[0]) < answer[1]) {
+    		int tempvalue = answer[0];
+    		reduce(answer);
+    		if(tempvalue < 0) {
+    			answer[0] *= -1;
+    		}
+    		return  answer[0] + "/" + answer[1];
+    	}
+    	return "";
+    }
     //this method returns the greatest common factor between the numerator and the denominator
     public static int findGCF(int numerator, int denominator) {
 		if (isPrime(denominator)==true) {
@@ -178,7 +198,9 @@ public class FracCalc {
 		}
 		return false;
 	}
+	
 	public static void reduce(int[]fraction) {
+		fraction[0] = absValue(fraction[0]);
 		int gcf = findGCF(fraction[0], fraction[1]);
 		fraction[0] = fraction[0] / gcf;
 		fraction[1] = fraction[1] / gcf;
@@ -187,7 +209,9 @@ public class FracCalc {
 	public static String toMixedNum (int[] improperfrac) {
 		int newnumerator = improperfrac[0] % improperfrac[1];
 		int wholenumber = improperfrac[0] / improperfrac[1];
-		return (wholenumber + "_" + newnumerator +  "/" + improperfrac[1]);
+		improperfrac[0]= newnumerator;
+		reduce(improperfrac);
+		return ""+ wholenumber + "_" + improperfrac[0] + "/" + improperfrac[1];
 	}
 	
 }
