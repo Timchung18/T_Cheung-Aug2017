@@ -26,9 +26,13 @@ public class FracCalc {
     		return "ERROR: cannot divide by zero";
     	}
     	String [] inputarray = input.split(" ");
-    	Fraction thesecondoperand = new Fraction(inputarray[2]);
-    	
-    	return thesecondoperand.check2String();
+    	Fraction operand1 = new Fraction(inputarray[0]);
+    	Fraction operand2 = new Fraction(inputarray[2]);
+    	operand1.toImproperFrac();
+    	operand2.toImproperFrac();
+    	//Fraction thesecondoperand = new Fraction(inputarray[2]);
+    	//return thesecondoperand.check2String();
+  
     	/*String [] operands = new String[(inputarray.length +1) /2];
     	for (int i=0; i < operands.length; i++) {
     		operands[i] = inputarray[i*2];
@@ -36,15 +40,15 @@ public class FracCalc {
     	String [] operators = new String[inputarray.length/2];
     	for (int i = 0; i<operators.length; i++) {
     		operators[i] = inputarray[i*2 + 1];
-    	}
-    	String result = calculate(operators[0], operands[0], operands[1]);
-    	for(int i =1; i<operators.length; i++) {
-    		result = calculate(operators[i], result, operands[i+1]);
-    	}
+    	}*/
+    	//String result = calculate(operators[0], operands[0], operands[1], operand1, operand2);
+    	//for(int i =1; i<operators.length; i++) {
+    	//	result = calculate(operators[i], result, operands[i+1]);
+    	//}
     	
-    	return result;*/
+    	return "";
     }
-    public static String calculate(String operator, String firstoperand, String secondoperand){ 
+    public static String calculate(String operator, String firstoperand, String secondoperand, Fraction operand1, Fraction operand2){ 
     	String [] split1 = splitOperand(firstoperand);//[whole num, numerator, denominator] strings
     	String [] split2 = splitOperand(secondoperand); //already taken care of in the fraction object class; delete later
     	
@@ -56,6 +60,7 @@ public class FracCalc {
     	for (int i = 0; i < split2.length; i++) {
     		opernums2[i] = toNumber(split2[i]);
     	}
+    	//up to here
     	int[] operand1 = new int[2];
     	int[] operand2 = new int[2];
     	operand1=toImproperFrac(opernums1);
