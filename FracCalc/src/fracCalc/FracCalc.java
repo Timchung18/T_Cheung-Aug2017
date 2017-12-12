@@ -26,27 +26,27 @@ public class FracCalc {
     		return "ERROR: cannot divide by zero";
     	}
     	String [] inputarray = input.split(" ");
-    	String [] operands = new String[(inputarray.length +1) /2];
+    	Fraction thesecondoperand = new Fraction(inputarray[2]);
+    	
+    	return thesecondoperand.check2String();
+    	/*String [] operands = new String[(inputarray.length +1) /2];
     	for (int i=0; i < operands.length; i++) {
     		operands[i] = inputarray[i*2];
     	}
     	String [] operators = new String[inputarray.length/2];
     	for (int i = 0; i<operators.length; i++) {
     		operators[i] = inputarray[i*2 + 1];
-    		if(operators[i].length() > 1){
-    			return "ERROR: cannot do that";
-    		}
     	}
     	String result = calculate(operators[0], operands[0], operands[1]);
     	for(int i =1; i<operators.length; i++) {
     		result = calculate(operators[i], result, operands[i+1]);
     	}
     	
-    	return result;
+    	return result;*/
     }
     public static String calculate(String operator, String firstoperand, String secondoperand){ 
     	String [] split1 = splitOperand(firstoperand);//[whole num, numerator, denominator] strings
-    	String [] split2 = splitOperand(secondoperand); 
+    	String [] split2 = splitOperand(secondoperand); //already taken care of in the fraction object class; delete later
     	
     	int [] opernums1 = new int[3];
     	for (int i = 0; i< split1.length; i++) {
