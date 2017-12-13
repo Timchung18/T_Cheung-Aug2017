@@ -64,6 +64,7 @@ public class Fraction {
 		int top = ((absValue(wholenum) * denom) + numerator);
 		top *= multiplier;
 		numerator = top;
+		wholenum = 0;
 	}
 	public int absValue(int number) {
 		if (number < 0) {
@@ -73,11 +74,14 @@ public class Fraction {
 	}
 	
 	public void addOrsubtract(int numerator, int denominator, String operator) {
-		commonDenom(numerator,denominator);
+		this.numerator = denominator * this.numerator;
+    	numerator = this.denom * numerator;
+    	this.denom = this.denom * denominator;
+    	denominator = this.denom; 
     	if (operator.equals("-")) {
     		numerator = numerator * (-1);
     	}
-    	this.numerator = this.numerator + this.numerator;
+    	this.numerator = this.numerator + numerator;
 	}
 	public void commonDenom(int numerator, int denominator) {
     	this.numerator = denominator * this.numerator;
@@ -97,5 +101,19 @@ public class Fraction {
     	}
     	this.numerator = this.numerator * numerator;
     	this.denom = this.denom * denominator;
+	}
+	public int getNumerator() {
+		return numerator;
+	}
+	public int getDenominator() {
+		return denom;
+	}
+	
+	public String toString() {
+		String answer = wholenum + "_" + numerator + "/" + denom;
+		if (wholenum == 0) {
+			answer = numerator + "/" + denom;
+		}
+		return answer;
 	}
 }

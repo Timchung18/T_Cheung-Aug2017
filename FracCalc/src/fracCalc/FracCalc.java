@@ -30,6 +30,9 @@ public class FracCalc {
     	Fraction operand2 = new Fraction(inputarray[2]);
     	operand1.toImproperFrac();
     	operand2.toImproperFrac();
+    	String operator = inputarray[1];
+    	calculate(operator,operand1, operand2);
+    	return operand1.toString();
     	//Fraction thesecondoperand = new Fraction(inputarray[2]);
     	//return thesecondoperand.check2String();
   
@@ -46,35 +49,19 @@ public class FracCalc {
     	//	result = calculate(operators[i], result, operands[i+1]);
     	//}
     	
-    	return "";
+    	//return "";
     }
-    public static String calculate(String operator, String firstoperand, String secondoperand, Fraction operand1, Fraction operand2){ 
-    	String [] split1 = splitOperand(firstoperand);//[whole num, numerator, denominator] strings
-    	String [] split2 = splitOperand(secondoperand); //already taken care of in the fraction object class; delete later
+    public static void calculate(String operator, Fraction fraction1, Fraction fraction2){ 
     	
-    	int [] opernums1 = new int[3];
-    	for (int i = 0; i< split1.length; i++) {
-    		opernums1[i]= toNumber(split1[i]);
-    	}
-    	int []opernums2 = new int[3];
-    	for (int i = 0; i < split2.length; i++) {
-    		opernums2[i] = toNumber(split2[i]);
-    	}
-    	//up to here
-    	int[] operand1 = new int[2];
-    	int[] operand2 = new int[2];
-    	operand1=toImproperFrac(opernums1);
-    	operand2=toImproperFrac(opernums2);
-    	
-    	//doing the actual calculating
-    	int[] answer = new int[2];    	
     	if (operator.equals("+")||operator.equals("-")) {
-    		addOrsubtract(operand1,operand2,answer,operator);
+    		fraction1.addOrsubtract(fraction2.getNumerator(), fraction2.getDenominator(), operator);
+    		//addOrsubtract(operand1,operand2,answer,operator);
     	}else {
-    		multiplyOrdivide(operand1,operand2, answer, operator);
+    		fraction1.multiplyOrdivide(fraction2.getNumerator(), fraction2.getDenominator(), operator);
+    		//multiplyOrdivide(operand1,operand2, answer, operator);
     	}
     	
-    	return simplifyAndToString(answer);
+    	
     }
     
     public static int toNumber(String numberstr) {
@@ -167,7 +154,7 @@ public class FracCalc {
 	}
     
     public static String simplifyAndToString(int[] answer) {
-    	if (answer[0] % answer[1] == 0) {
+    	if (answer[0]>0) {
     		return "" + answer[0]/answer[1];
     	}else if(absValue(answer[0]) > answer[1]) {
     		return toMixedNum(answer);
