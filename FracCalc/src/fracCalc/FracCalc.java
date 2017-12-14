@@ -1,6 +1,6 @@
 //Tim Cheung, APCS Period 1
-// 12/1/17
-//Description: This class is a calculator for fractions, mixed numbers, and integers.
+// 12/14/17
+//Description: This class is a calculator for fractions, mixed numbers, and integers. It uses objects. This is the client code.
 package fracCalc;
 import java.util.*;
 public class FracCalc {

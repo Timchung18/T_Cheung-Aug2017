@@ -1,3 +1,6 @@
+//Tim Cheung, APCS1
+// 12/14/17
+// This is an object class for Fractions. It contains methods to construct, calculate, and reduce fractions.
 package fracCalc;
 
 public class Fraction {
