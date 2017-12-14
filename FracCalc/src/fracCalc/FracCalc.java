@@ -31,19 +31,12 @@ public class FracCalc {
     	operand1.toImproperFrac();
     	operand2.toImproperFrac();
     	String operator = inputarray[1];
-    	calculate(operator,operand1, operand2);
-    	return operand1.toString();
+    	String result = calculate(operator,operand1, operand2);
+    
+    	return result;
     	//Fraction thesecondoperand = new Fraction(inputarray[2]);
     	//return thesecondoperand.check2String();
-  
-    	/*String [] operands = new String[(inputarray.length +1) /2];
-    	for (int i=0; i < operands.length; i++) {
-    		operands[i] = inputarray[i*2];
-    	}
-    	String [] operators = new String[inputarray.length/2];
-    	for (int i = 0; i<operators.length; i++) {
-    		operators[i] = inputarray[i*2 + 1];
-    	}*/
+ 
     	//String result = calculate(operators[0], operands[0], operands[1], operand1, operand2);
     	//for(int i =1; i<operators.length; i++) {
     	//	result = calculate(operators[i], result, operands[i+1]);
@@ -51,7 +44,7 @@ public class FracCalc {
     	
     	//return "";
     }
-    public static void calculate(String operator, Fraction fraction1, Fraction fraction2){ 
+    public static String calculate(String operator, Fraction fraction1, Fraction fraction2){ 
     	
     	if (operator.equals("+")||operator.equals("-")) {
     		fraction1.addOrsubtract(fraction2.getNumerator(), fraction2.getDenominator(), operator);
@@ -60,7 +53,7 @@ public class FracCalc {
     		fraction1.multiplyOrdivide(fraction2.getNumerator(), fraction2.getDenominator(), operator);
     		//multiplyOrdivide(operand1,operand2, answer, operator);
     	}
-    	
+    	return fraction1.toString();
     	
     }
     
