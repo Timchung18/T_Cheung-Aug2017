@@ -4,25 +4,45 @@
 package fracCalc;
 
 public class Fraction {
-	//checkpoint two: return components of the second operand
+	//Instance variables
 	private int wholenum;
 	private int numerator;
 	private int denom;
 	private String wholenumstr;
 	private String numeratorstr;
 	private String denomstr;
-	//Constructor
+	
+	//Constructors
 	public Fraction (String operand) {
 		createNewFraction(operand);
 	}
-
+	public Fraction (int wholenum, int numerator, int denom) {
+		this.wholenum = wholenum;
+		this.numerator = numerator;
+		this.denom = denom;
+	}
+	
+	//Setters/mutators
 	public String check2String() {
 		String answer = "whole:" + wholenum + " numerator:" + numerator + " denominator:" + denom;
 		return answer;
 	}
 
-	public void splitOperand(String operand) {
+	public void createNewFraction(String operand) {
+		splitOperand(operand);
+		wholenum = toNumber(wholenumstr);
+		numerator = toNumber(numeratorstr);
+		denom = toNumber(denomstr);
+		toImproperFrac();
+	}
+	
+	public void createNewFraction(int wholenum, int numerator, int denom) {
+		this.wholenum= wholenum;
+		this.numerator=numerator;
+		this.denom = denom;
+	}
 
+	private void splitOperand(String operand) {
 		String [] operandarr = operand.split("_");
 		wholenumstr = operandarr[0];
 		numeratorstr = "0";
@@ -56,7 +76,8 @@ public class Fraction {
 		}
 		return 0;
 	}
-	public void toImproperFrac() {
+	
+	private void toImproperFrac() {
 		int multiplier = 1;
 		if (wholenum<0) {
 			multiplier = -1;
@@ -66,7 +87,8 @@ public class Fraction {
 		numerator = top;
 		wholenum = 0;
 	}
-	public int absValue(int number) {
+	
+	private int absValue(int number) {
 		if (number < 0) {
 			number = number * -1; 
 		}
@@ -83,12 +105,7 @@ public class Fraction {
 		}
 		this.numerator = this.numerator + numerator;
 	}
-	public void commonDenom(int numerator, int denominator) {
-		this.numerator = denominator * this.numerator;
-		numerator = this.denom * numerator;
-		this.denom = this.denom * denominator;
-		denominator = this.denom; 
-	}
+	
 	public void multiplyOrdivide(int numerator, int denominator, String operator) {
 		if (operator.equals("/")) {
 			int save = numerator;
@@ -102,13 +119,7 @@ public class Fraction {
 		this.numerator = this.numerator * numerator;
 		this.denom = this.denom * denominator;
 	}
-	public int getNumerator() {
-		return numerator;
-	}
-	public int getDenominator() {
-		return denom;
-	}
-
+	
 	public String toString() {
 		simplify();
 		String answer = wholenum + "_" + numerator + "/" + denom;
@@ -137,21 +148,7 @@ public class Fraction {
 			}
 		}
 	}
-	 /*public static String simplifyAndToString(int[] answer) {
-	    	if (answer[0] % answer[1] == 0) {
-	    		return "" + answer[0]/answer[1];
-	    	}else if(absValue(answer[0]) > answer[1]) {
-	    		return toMixedNum(answer);
-	    	}else if (absValue(answer[0]) < answer[1]) {
-	    		int tempvalue = answer[0];
-	    		reduce(answer);
-	    		if(tempvalue < 0) {
-	    			answer[0] *= -1;
-	    		}
-	    		return  answer[0] + "/" + answer[1];
-	    	}
-	    	return "";
-	    }*/
+	
 	private int findGCF(int numerator, int denominator) {
 		if (isPrime(denominator)==true) {
 			return 1;
@@ -192,10 +189,14 @@ public class Fraction {
 		}
 	}
 	
-	public void createNewFraction(String operand) {
-		splitOperand(operand);
-		wholenum = toNumber(wholenumstr);
-		numerator = toNumber(numeratorstr);
-		denom = toNumber(denomstr);
+	//Getters/Accessors
+	public int getNumerator() {
+		return numerator;
+	}
+	public int getDenominator() {
+		return denom;
+	}
+	public int getWholeNum() {
+		return wholenum;
 	}
 }
