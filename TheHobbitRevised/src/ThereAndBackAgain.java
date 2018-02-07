@@ -67,8 +67,8 @@ public class ThereAndBackAgain
 		party.add(bilbo);
 		party.add(gandalf);
 		for(int i = 0; i < dwarfNames.length;i++) {
-			Dwarf name = new Dwarf(dwarfNames[i]);
-			party.add(name);
+			Dwarf aDwarf = new Dwarf(dwarfNames[i]);
+			party.add(aDwarf);
 		}
 		
 	}
