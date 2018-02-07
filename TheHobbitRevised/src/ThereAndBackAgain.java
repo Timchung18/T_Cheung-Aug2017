@@ -83,12 +83,10 @@ public class ThereAndBackAgain
 	//     kili has traveled 100 miles
 	public static String allTravel(ArrayList<Traveler> party, int miles)
 	{
+		String answer = "";
 		for (Traveler trv: party) {
 			trv.travel(miles);
-		}
-		String answer = "";
-		for (int i = 0; i < party.size(); i++) {
-			answer += party.get(i).getName() + " has traveled " + party.get(i).getDistanceTraveled() + " miles.\n";
+			answer += trv.getName() + " has traveled " + trv.getDistanceTraveled() + " miles.\n";
 		}
 		return answer;
 	}
