@@ -13,7 +13,16 @@
 public abstract class Prism  
 {
 	private double height;
-	
-	
+	public Prism(double h) {
+		height = h;
+	}
+	public abstract double calcAreaOfBase();
+	public abstract double calcPerimeter();
+	public double calcVolume() {
+		return (calcAreaOfBase() * height);
+	}
+	public double calcSA() {
+		return ((calcPerimeter() * height) + (calcAreaOfBase() *2));
+	}
 }
 	
