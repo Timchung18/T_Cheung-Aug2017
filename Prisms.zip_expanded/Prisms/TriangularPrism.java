@@ -10,10 +10,23 @@
  */
 
 
-public class TriangularPrism 
+public class TriangularPrism extends Prism
 {
-	
-	
+	private double sideA;
+	private double sideB;
+	private double sideC;
+	public TriangularPrism (double a, double b, double c, double height) {
+		super (height);
+		sideA = a;
+		sideB = b;
+		sideC = c;
+	}
+	public double calcAreaOfBase() {
+		return 0.0;
+	}
+	public double calcPerimeter() {
+		return (sideA + sideB + sideC);
+	}
 	
 	
 }
