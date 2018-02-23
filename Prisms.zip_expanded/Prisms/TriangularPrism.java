@@ -1,4 +1,7 @@
-/* Write this concrete (non-abstract) class called TriangularPrism.  
+/* Tim Cheung 
+ * APCS 1
+ * 2/23/18
+ * Write this concrete (non-abstract) class called TriangularPrism.  
  * It has 3 private fields (sideA, sideB, and sideC).
  * It inherits its height from its superclass, Prism (because all prisms have a height).
  * Provide a constructor and the methods required by its abstract superclass.  
@@ -22,7 +25,9 @@ public class TriangularPrism extends Prism
 		sideC = c;
 	}
 	public double calcAreaOfBase() {
-		return 0.0;
+		double semiPerim = 0.5 * (calcPerimeter());
+		double area = Math.sqrt(semiPerim * (semiPerim - sideA) * (semiPerim - sideB) * (semiPerim - sideC));
+		return area;
 	}
 	public double calcPerimeter() {
 		return (sideA + sideB + sideC);

@@ -1,4 +1,8 @@
-/* Write this concrete (non-abstract) class called Cylinder that extends Prism.  
+ /*Tim Cheung 
+ * APCS 1
+ * 2/23/18
+ *
+ * Write this concrete (non-abstract) class called Cylinder that extends Prism.  
  * It has a private field (radius) and inherits its height from its superclass, Prism 
  *    (because all prisms have a height).
  * Provide a constructor and the methods required by its abstract superclass.  
