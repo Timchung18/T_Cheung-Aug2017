@@ -9,21 +9,21 @@ public class Spreadsheet implements Grid
 	public String processCommand(String command)
 	{
 		// processes a user command, returns string to display, must be called in loop from main
-		return null;
+		return "";
 	}
 
 	@Override
 	public int getRows()
 	{
 		// returns number of rows in grid
-		return 0;
+		return 20;
 	}
 
 	@Override
 	public int getCols()
 	{
 		// returns number of columns in grid
-		return 0;
+		return 12;
 	}
 
 	@Override
