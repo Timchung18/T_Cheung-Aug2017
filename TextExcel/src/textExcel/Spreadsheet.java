@@ -8,35 +8,35 @@ public class Spreadsheet implements Grid
 	@Override
 	public String processCommand(String command)
 	{
-		// TODO Auto-generated method stub
+		// processes a user command, returns string to display, must be called in loop from main
 		return null;
 	}
 
 	@Override
 	public int getRows()
 	{
-		// TODO Auto-generated method stub
+		// returns number of rows in grid
 		return 0;
 	}
 
 	@Override
 	public int getCols()
 	{
-		// TODO Auto-generated method stub
+		// returns number of columns in grid
 		return 0;
 	}
 
 	@Override
 	public Cell getCell(Location loc)
 	{
-		// TODO Auto-generated method stub
+		// returns cell at loc
 		return null;
 	}
 
 	@Override
 	public String getGridText()
 	{
-		// TODO Auto-generated method stub
+		//  returns entire grid, formatted as text for display
 		return null;
 	}
 
