@@ -4,7 +4,10 @@ package textExcel;
 
 public class Spreadsheet implements Grid
 {
-
+	private Cell [][] sheet;
+	public Spreadsheet () {
+		sheet = new EmptyCell [20][12];
+	}
 	@Override
 	public String processCommand(String command)
 	{
@@ -37,7 +40,7 @@ public class Spreadsheet implements Grid
 	public String getGridText()
 	{
 		//  returns entire grid, formatted as text for display
-		return null;
+		return "";
 	}
 
 }
