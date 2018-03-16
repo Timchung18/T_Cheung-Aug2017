@@ -5,6 +5,7 @@ package textExcel;
 public class Spreadsheet implements Grid
 {
 	private Cell [][] sheet;
+	
 	public Spreadsheet () {
 		sheet = new Emptycell [20][12];
 	}
@@ -33,13 +34,21 @@ public class Spreadsheet implements Grid
 	public Cell getCell(Location loc)
 	{
 		// returns cell at loc
-		return null;
+		int row = loc.getRow();
+		int column = loc.getCol();
+		Cell answer = sheet[row][column];
+		return answer;
 	}
 
 	@Override
 	public String getGridText()
 	{
 		//  returns entire grid, formatted as text for display
+		String firstRow = "";
+		for (int i = 0; i < 12; i++) {
+			char currLetter = (char)(i + 65);
+			firstRow += "|" + currLetter + "         ";
+		}
 		return "";
 	}
 
