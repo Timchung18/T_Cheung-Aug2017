@@ -21,7 +21,11 @@ public class SpreadsheetLocation implements Location
     public SpreadsheetLocation(String cellName)
     {
     	column = cellName.charAt(0) - 65;
-    	row = cellName.charAt(1);
+    	row = cellName.charAt(1) - 49;
+    	if(cellName.length()==3) {
+    		row = cellName.charAt(1) * 10 - 480;
+    		row += cellName.charAt(2) - 49;
+    	}
     }
 
 }

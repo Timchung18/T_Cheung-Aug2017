@@ -6,7 +6,7 @@ public class Spreadsheet implements Grid
 {
 	private Cell [][] sheet;
 	public Spreadsheet () {
-		sheet = new EmptyCell [20][12];
+		sheet = new Emptycell [20][12];
 	}
 	@Override
 	public String processCommand(String command)
