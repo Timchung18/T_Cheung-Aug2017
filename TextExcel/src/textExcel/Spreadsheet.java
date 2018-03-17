@@ -7,7 +7,13 @@ public class Spreadsheet implements Grid
 	private Cell [][] sheet;
 	
 	public Spreadsheet () {
-		sheet = new Emptycell [20][12];
+		sheet = new EmptyCell [20][12];
+		for(int r = 0; r < 20; r++) {
+			for(int c = 0; c < 12; c++) {
+				Cell temp = new EmptyCell();
+				sheet[r][c] = temp;
+			}
+		}
 	}
 	@Override
 	public String processCommand(String command)
@@ -49,7 +55,21 @@ public class Spreadsheet implements Grid
 			char currLetter = (char)(i + 65);
 			firstRow += "|" + currLetter + "         ";
 		}
-		return "";
+		firstRow += "|\n";
+		String theRest = "";
+		for (int row = 0; row < 20; row++) {
+			theRest += (row+1) + " ";
+			if (row<10) {
+				theRest += " ";
+			}
+			for(int column = 0; column < 12; column ++) {
+				theRest += sheet[row][column].abbreviatedCellText();
+				theRest += "|";
+			}
+			theRest += "\n";
+			
+		}
+		return (firstRow + theRest);
 	}
 
 }
