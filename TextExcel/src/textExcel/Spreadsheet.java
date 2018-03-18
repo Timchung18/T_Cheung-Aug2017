@@ -7,19 +7,14 @@ public class Spreadsheet implements Grid
 	private Cell [][] sheet;
 	
 	public Spreadsheet () {
-		sheet = new EmptyCell [20][12];
-		for(int r = 0; r < 20; r++) {
-			for(int c = 0; c < 12; c++) {
-				Cell temp = new EmptyCell();
-				sheet[r][c] = temp;
-			}
-		}
+		clearAll();
 	}
 	@Override
 	public String processCommand(String command)
 	{
 		// processes a user command, returns string to display, must be called in loop from main
-		return "";
+		String answer = determine(command);
+		return answer;
 	}
 
 	@Override
@@ -50,7 +45,7 @@ public class Spreadsheet implements Grid
 	public String getGridText()
 	{
 		//  returns entire grid, formatted as text for display
-		String firstRow = "";
+		String firstRow = "   ";
 		for (int i = 0; i < 12; i++) {
 			char currLetter = (char)(i + 65);
 			firstRow += "|" + currLetter + "         ";
@@ -58,18 +53,80 @@ public class Spreadsheet implements Grid
 		firstRow += "|\n";
 		String theRest = "";
 		for (int row = 0; row < 20; row++) {
-			theRest += (row+1) + " ";
-			if (row<10) {
-				theRest += " ";
+			String wholeRow = (row+1) + " ";
+			if (row<9) {
+				wholeRow += " ";
 			}
+			wholeRow += "|";
 			for(int column = 0; column < 12; column ++) {
-				theRest += sheet[row][column].abbreviatedCellText();
-				theRest += "|";
+				wholeRow += sheet[row][column].abbreviatedCellText();
+				wholeRow += "|";
 			}
-			theRest += "\n";
+			theRest += wholeRow + "\n";
 			
 		}
 		return (firstRow + theRest);
 	}
+	
+	public String determine(String command) {
+		String[] splittedComm = command.split(" ");
+		if(splittedComm.length < 3) {
+			command = command.toLowerCase();
+			if (command.contains("clear")) {
+				if (command.equals("clear")) {
+					clearAll();
+					return getGridText();
+				}else {
+					Location cell = new SpreadsheetLocation(splittedComm[1]);
+					sheet [cell.getRow()][cell.getCol()] = new EmptyCell();
+					return getGridText();
+				}
+			}else {
+				return cellInspc(command);
+			}
+		}else {
+			Location assignment = new SpreadsheetLocation (splittedComm[0]);
+			String str = splittedComm[2];
+			str = str.substring(1, str.length() - 1);
+			sheet[assignment.getRow()][assignment.getCol()] = new TextCell(str);
+			return getGridText();
+		}
+	}
+	
+	public String cellInspc(String command) {
+		Location cellLoc = new SpreadsheetLocation(command);
+		String insideValue = sheet[cellLoc.getRow()][cellLoc.getCol()].fullCellText();
+		return insideValue;
+	}
+	
+	public void clearAll() {
+		sheet = new EmptyCell [20][12];
+		for(int r = 0; r < 20; r++) {
+			for(int c = 0; c < 12; c++) {
+				sheet[r][c] = new EmptyCell();
+			}
+		}
+	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
