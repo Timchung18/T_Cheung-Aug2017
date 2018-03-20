@@ -14,10 +14,9 @@ public class Spreadsheet implements Grid
 	public String processCommand(String command)
 	{
 		// processes a user command, returns string to display, must be called in loop from main
-		String answer = determine(command);
-		return answer;
-	}
-	public String determine(String command) {
+		if (command.equals("")||command.equals("quit")) {
+			return "";
+		}
 		String[] splittedComm = command.split(" ");
 		if(splittedComm.length < 3) {
 			command = command.toLowerCase();
@@ -31,16 +30,23 @@ public class Spreadsheet implements Grid
 					return getGridText();//clears a cell
 				}
 			}else {
-				return cellInspc(command);//passes it to cell inspection to fill with the value
+				return cellInspc(command);//passes it to cell inspection 
 			}
 		}else {
-			Location assignment = new SpreadsheetLocation (splittedComm[0]);
-			String str = splittedComm[2];
-			str = str.substring(1, str.length() - 1);
-			Cell numberAssignmt = new TextCell(str);
-			sheet[assignment.getRow()][assignment.getCol()] = numberAssignmt;
-			return getGridText();
+			
+			return stringAssign(command);
 		}
+		
+	}
+	public String stringAssign(String command) {
+		String [] splitCommand = command.split(" ", 2);
+		Location assignment = new SpreadsheetLocation (splitCommand[0]);
+		//String [] strWithQuotes = splitCommand[1].split("=",2);
+		String str = splitCommand[1].substring(2);
+		str = str.substring(1, str.length() - 1);
+		Cell strAssignment = new TextCell(str);
+		sheet[assignment.getRow()][assignment.getCol()] = strAssignment;
+		return getGridText();
 	}
 	@Override
 	public int getRows()
