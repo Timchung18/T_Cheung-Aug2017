@@ -7,6 +7,7 @@ public class Spreadsheet implements Grid
 	private Cell [][] sheet;
 	
 	public Spreadsheet () {
+		sheet = new Cell [20][12];
 		clearAll();
 	}
 	@Override
@@ -16,7 +17,31 @@ public class Spreadsheet implements Grid
 		String answer = determine(command);
 		return answer;
 	}
-
+	public String determine(String command) {
+		String[] splittedComm = command.split(" ");
+		if(splittedComm.length < 3) {
+			command = command.toLowerCase();
+			if (command.contains("clear")) {
+				if (command.equals("clear")) {
+					clearAll();
+					return getGridText(); //clears the whole thing
+				}else {
+					Location cell = new SpreadsheetLocation(splittedComm[1]);
+					sheet [cell.getRow()][cell.getCol()] = new EmptyCell();
+					return getGridText();//clears a cell
+				}
+			}else {
+				return cellInspc(command);//passes it to cell inspection to fill with the value
+			}
+		}else {
+			Location assignment = new SpreadsheetLocation (splittedComm[0]);
+			String str = splittedComm[2];
+			str = str.substring(1, str.length() - 1);
+			Cell numberAssignmt = new TextCell(str);
+			sheet[assignment.getRow()][assignment.getCol()] = numberAssignmt;
+			return getGridText();
+		}
+	}
 	@Override
 	public int getRows()
 	{
@@ -68,31 +93,7 @@ public class Spreadsheet implements Grid
 		return (firstRow + theRest);
 	}
 	
-	public String determine(String command) {
-		String[] splittedComm = command.split(" ");
-		if(splittedComm.length < 3) {
-			command = command.toLowerCase();
-			if (command.contains("clear")) {
-				if (command.equals("clear")) {
-					clearAll();
-					return getGridText(); //clears the whole thing
-				}else {
-					Location cell = new SpreadsheetLocation(splittedComm[1]);
-					sheet [cell.getRow()][cell.getCol()] = new EmptyCell();
-					return getGridText();//clears a cell
-				}
-			}else {
-				return cellInspc(command);//passes it to cell inspection to fill with the value
-			}
-		}else {
-			Location assignment = new SpreadsheetLocation (splittedComm[0]);
-			String str = splittedComm[2];
-			str = str.substring(1, str.length() - 1);
-			Cell numberAssignmt = new TextCell(str);
-			sheet[assignment.getRow()][assignment.getCol()] = numberAssignmt;
-			return getGridText();
-		}
-	}
+	
 	
 	public String cellInspc(String command) {
 		Location cellLoc = new SpreadsheetLocation(command);
@@ -101,7 +102,7 @@ public class Spreadsheet implements Grid
 	}
 	
 	public void clearAll() {
-		sheet = new EmptyCell [20][12];
+		
 		for(int r = 0; r < 20; r++) {
 			for(int c = 0; c < 12; c++) {
 				sheet[r][c] = new EmptyCell();
