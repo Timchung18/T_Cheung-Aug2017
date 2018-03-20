@@ -2,6 +2,11 @@ package textExcel;
 
 public class RealCell implements Cell{
 	private String userinput;
+	private double inputNumber;
+	public RealCell (String userInput) {
+		userinput = userInput;
+		inputNumber = getDoubleValue();
+	}
 	public String abbreviatedCellText() {
 		// text for spreadsheet cell display, must be exactly length 10
 		//may not need this code?
@@ -28,6 +33,9 @@ public class RealCell implements Cell{
 			space += " ";
 		}
 		return space;
+	}
+	public String getUserInput(){
+		return userinput;
 	}
 	
 
