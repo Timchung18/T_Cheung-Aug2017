@@ -6,5 +6,10 @@ public class FormulaCell extends RealCell{
 	}
 	//for cell inspection/fullCellText, make sure to include the parenthesis 
 	//when it prints to console
+	public String abbreviatedCellText() {
+		// text for spreadsheet cell display, must be exactly length 10
+		return "formula";
+	}
+	
 
 }

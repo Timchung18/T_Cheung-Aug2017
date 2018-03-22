@@ -33,18 +33,30 @@ public class Spreadsheet implements Grid
 				return cellInspc(command);//passes it to cell inspection 
 			}
 		}else {
-			
-			return stringAssign(command);
+			//send it to another method for assignment (which type of cell?) which sends it to the real thing
+			return stringAssign(command); //assigning a string to a cell
 		}
 		
 	}
+	public void assignment(String command) {
+		String [] splitCommand = command.split(" ", 2);
+		if (splitCommand[1].contains("( ")) {
+			//send to formula
+		}
+		if (splitCommand[1].contains("%")) {
+			//send to percent
+		}
+		
+			
+		}
+	
 	public String stringAssign(String command) {
 		String [] splitCommand = command.split(" ", 2);
 		Location assignment = new SpreadsheetLocation (splitCommand[0]);
 		//String [] strWithQuotes = splitCommand[1].split("=",2);
 		String str = splitCommand[1].substring(2);
 		str = str.substring(1, str.length() - 1);
-		Cell strAssignment = new TextCell(str);
+		Cell strAssignment = new TextCell(str); //to reduce lines of code maybe combine this and next line 
 		sheet[assignment.getRow()][assignment.getCol()] = strAssignment;
 		return getGridText();
 	}
