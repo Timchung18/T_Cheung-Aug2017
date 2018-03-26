@@ -1,6 +1,6 @@
 package textExcel;
 
-public class PercentCell extends RealCell{
+public class PercentCell extends ValueCell{
 	public PercentCell(String userInput) {
 		super(userInput);
 	}
@@ -17,17 +17,16 @@ public class PercentCell extends RealCell{
 	}
 	public String fullCellText() {
 		// text for individual cell inspection, not truncated or padded
-		String userinput = getUserInput();
-		String noPercentNum = userinput.substring(0, userinput.length()-1);
-		double number = getDoubleValue(noPercentNum);
-		return (number * .01) + "";
+		return (super.getDoubleValue() * .01) + "";
 	}
-	public double getDoubleValue(String number) {
+	public double getDoubleValue() {
 		//returns the value of the cell as a double (changes string into double)
 		//overloaded(?) or overRidden(?) the superclass method for getDoubleValue
-		double value = Double.parseDouble(number);
+		String userinput = getUserInput();
+		String noPercentNum = userinput.substring(0, userinput.length()-1);
+		double value = Double.parseDouble(noPercentNum);
 		return value;
 	}
-
+	
 
 }

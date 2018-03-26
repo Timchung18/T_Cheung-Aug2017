@@ -2,10 +2,8 @@ package textExcel;
 
 public class RealCell implements Cell{
 	private String userinput;
-	private double inputNumber;
 	public RealCell (String userInput) {
 		userinput = userInput;
-		inputNumber = getDoubleValue();
 	}
 	public String abbreviatedCellText() {
 		// text for spreadsheet cell display, must be exactly length 10

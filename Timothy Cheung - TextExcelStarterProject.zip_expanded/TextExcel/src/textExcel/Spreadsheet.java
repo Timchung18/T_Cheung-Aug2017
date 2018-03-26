@@ -40,25 +40,53 @@ public class Spreadsheet implements Grid
 	}
 	public void assignment(String command) {
 		String [] splitCommand = command.split(" ", 2);
-		if (splitCommand[1].contains("( ")) {
+		if (splitCommand[1].contains("\"")) {
+			stringAssign(command);
+		} else if (splitCommand[1].contains("( ")) {
 			//send to formula
-		}
-		if (splitCommand[1].contains("%")) {
+			assignFormula(command);
+		} else if (splitCommand[1].contains("%")) {
 			//send to percent
+			assignPercent(command);
+		}else { //value cell
+			
+			
 		}
-		
 			
 		}
 	
 	public String stringAssign(String command) {
 		String [] splitCommand = command.split(" ", 2);
-		Location assignment = new SpreadsheetLocation (splitCommand[0]);
+		Location location = new SpreadsheetLocation (splitCommand[0]);
 		//String [] strWithQuotes = splitCommand[1].split("=",2);
 		String str = splitCommand[1].substring(2);
 		str = str.substring(1, str.length() - 1);
 		Cell strAssignment = new TextCell(str); //to reduce lines of code maybe combine this and next line 
-		sheet[assignment.getRow()][assignment.getCol()] = strAssignment;
+		sheet[location.getRow()][location.getCol()] = strAssignment;
 		return getGridText();
+	}
+	
+	public String assignPercent(String command) {
+		String[] splitCommand = command.split(" ");
+		String cellLocation = splitCommand[0];
+		Location location = new SpreadsheetLocation (cellLocation);
+		Cell assignment = new PercentCell(splitCommand[2]);
+		sheet[location.getRow()][location.getCol()] = assignment;
+		return getGridText();
+	}
+	public String assignFormula(String command) {
+		String[] splitCommand = command.split(" ", 3);
+		//A2 = (A5 - A6)
+		String cellLocation = splitCommand[0];
+		Location location = new SpreadsheetLocation (cellLocation);
+		Cell assignment = new FormulaCell(splitCommand[2]);
+		sheet[location.getRow()][location.getCol()] = assignment;
+		return getGridText();
+	}
+	public void assignValue(String command) {
+		String[] splitCommand = command.split(" ", 3);
+		String cellLocation = splitCommand[0];
+		
 	}
 	@Override
 	public int getRows()
