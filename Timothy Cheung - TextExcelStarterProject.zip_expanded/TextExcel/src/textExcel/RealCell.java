@@ -8,11 +8,11 @@ public class RealCell implements Cell{
 	public String abbreviatedCellText() {
 		// text for spreadsheet cell display, must be exactly length 10
 		//may not need this code?
-		String abbrev = userinput;
+		/*String abbrev = userinput;
 		if(userinput.length() > 10) {
 			abbrev = userinput.substring(0,10);
 		}
-		abbrev += spaces(userinput.length());
+		abbrev += spaces(userinput.length());*/
 		return userinput;
 	}
 	public String fullCellText() {

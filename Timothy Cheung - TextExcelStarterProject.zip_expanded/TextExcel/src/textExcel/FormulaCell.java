@@ -8,7 +8,9 @@ public class FormulaCell extends RealCell{
 	//when it prints to console
 	public String abbreviatedCellText() {
 		// text for spreadsheet cell display, must be exactly length 10
-		return "formula";
+		String answer = "answer";
+		answer += super.spaces(answer.length());
+		return answer;
 	}
 	
 

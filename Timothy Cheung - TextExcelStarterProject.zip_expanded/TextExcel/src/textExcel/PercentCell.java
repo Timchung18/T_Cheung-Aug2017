@@ -7,17 +7,19 @@ public class PercentCell extends ValueCell{
 	public String abbreviatedCellText() {
 		// text for spreadsheet cell display, must be exactly length 10
 		String userinput = getUserInput();
-		String[] parseDecimal = userinput.split(".");
-		String abbrevStr = parseDecimal[0];
-		abbrevStr += "%";
-		//do this? super.abbreviatedCellText();
-		// assume that the percent number will not go above 10 digits?
-		abbrevStr += spaces(abbrevStr.length());
-		return abbrevStr;
+		//String[] parseDecimal = userinput.split(".",2);
+		//String abbrevStr = parseDecimal[0];
+		//abbrevStr += "%";
+		//abbrevStr += super.spaces(abbrevStr.length());
+		int index = userinput.indexOf(".");
+		//return abbrevStr;
+		String answer = userinput.substring(0, index);
+		answer += "%";
+		return answer;
 	}
 	public String fullCellText() {
 		// text for individual cell inspection, not truncated or padded
-		return (super.getDoubleValue() * .01) + "";
+		return (getDoubleValue()) + "";
 	}
 	public double getDoubleValue() {
 		//returns the value of the cell as a double (changes string into double)
@@ -25,7 +27,7 @@ public class PercentCell extends ValueCell{
 		String userinput = getUserInput();
 		String noPercentNum = userinput.substring(0, userinput.length()-1);
 		double value = Double.parseDouble(noPercentNum);
-		return value;
+		return value * 0.01;
 	}
 	
 

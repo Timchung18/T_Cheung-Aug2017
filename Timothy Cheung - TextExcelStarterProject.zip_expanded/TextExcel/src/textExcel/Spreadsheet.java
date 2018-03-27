@@ -33,14 +33,16 @@ public class Spreadsheet implements Grid
 				return cellInspc(command);//passes it to cell inspection 
 			}
 		}else {
-			//send it to another method for assignment (which type of cell?) which sends it to the real thing
-			return stringAssign(command); //assigning a string to a cell
+			//send it to another method for assignment 
+			return assignmentReal(command); 
 		}
 		
 	}
-	public void assignment(String command) {
-		String [] splitCommand = command.split(" ", 2);
-		if (splitCommand[1].contains("\"")) {
+	public int assignment(String command) {
+		String [] splitCommand = command.split(" ", 3);
+		String cellLocation = splitCommand[0];
+		Location location = new SpreadsheetLocation(cellLocation);
+		if (splitCommand[2].contains("\"")) {
 			stringAssign(command);
 		} else if (splitCommand[1].contains("( ")) {
 			//send to formula
@@ -49,13 +51,37 @@ public class Spreadsheet implements Grid
 			//send to percent
 			assignPercent(command);
 		}else { //value cell
+
+		return location.getCol();
+		}return location.getCol();
 			
-			
+	}
+	public String assignmentReal(String command) {
+		//Determines, where to put the value into in the spreadsheet,
+		// what type of value is being put into the cell
+		// and returns the string grid
+		String [] splitCommand = command.split(" ", 3);
+		String cellLocation = splitCommand[0];
+		Location location = new SpreadsheetLocation(cellLocation);
+		Cell assignment = new EmptyCell();
+		if (splitCommand[2].contains("\"")) {
+			String str = splitCommand[2];
+			str = str.substring(1, str.length() - 1);
+			assignment = new TextCell(str);
+		} else if (splitCommand[2].contains("( ")) {
+			//send to formula
+			assignment = new FormulaCell(splitCommand[2]);
+		} else if (splitCommand[2].contains("%")) {
+			//send to percent
+			assignment = new PercentCell(splitCommand[2]);
+		} else { //value cell
+			assignment = new ValueCell(splitCommand[2]);
 		}
+		sheet[location.getRow()][location.getCol()] = assignment;
+		return getGridText();
 			
-		}
-	
-	public String stringAssign(String command) {
+	}
+	public String stringAssign(String command) {// send in the third string of split command and the location
 		String [] splitCommand = command.split(" ", 2);
 		Location location = new SpreadsheetLocation (splitCommand[0]);
 		//String [] strWithQuotes = splitCommand[1].split("=",2);
@@ -86,7 +112,11 @@ public class Spreadsheet implements Grid
 	public void assignValue(String command) {
 		String[] splitCommand = command.split(" ", 3);
 		String cellLocation = splitCommand[0];
-		
+		Location location = new SpreadsheetLocation(cellLocation);
+		Cell assignment = new FormulaCell(splitCommand[2]);
+
+		sheet[location.getRow()][location.getCol()] = assignment;
+
 	}
 	@Override
 	public int getRows()
@@ -130,7 +160,9 @@ public class Spreadsheet implements Grid
 			}
 			wholeRow += "|";
 			for(int column = 0; column < 12; column ++) {
-				wholeRow += sheet[row][column].abbreviatedCellText();
+				String answer = sheet[row][column].abbreviatedCellText();
+				answer += spaces(answer.length());
+				wholeRow += answer;
 				wholeRow += "|";
 			}
 			theRest += wholeRow + "\n";
@@ -138,7 +170,14 @@ public class Spreadsheet implements Grid
 		}
 		return (firstRow + theRest);
 	}
-	
+	public String spaces(int length) {
+		//adds spaces to the abbreviated text so that it is exactly ten indexes long
+		String space = "";
+		for (int i = length; i < 10; i ++) {
+			space += " ";
+		}
+		return space;
+	}
 	
 	
 	public String cellInspc(String command) {

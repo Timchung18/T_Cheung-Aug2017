@@ -14,7 +14,6 @@ public class TextExcel
 		//System.out.println(th.getText());
 		//Spreadsheet abc = new Spreadsheet();
 		//System.out.println(abc.getGridText());
-	
 		Scanner userinput = new Scanner (System.in);
 		Spreadsheet sheet = new Spreadsheet();
 		boolean done = true;

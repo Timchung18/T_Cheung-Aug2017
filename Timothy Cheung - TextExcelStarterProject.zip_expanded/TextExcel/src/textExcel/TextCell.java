@@ -11,7 +11,7 @@ public class TextCell implements Cell{
 		if(text.length() > 10) {
 			abbrev = text.substring(0,10);
 		}
-		abbrev += spaces(text.length());
+		//abbrev += spaces(text.length());
 		return abbrev;
 	}
 	public String fullCellText() {
