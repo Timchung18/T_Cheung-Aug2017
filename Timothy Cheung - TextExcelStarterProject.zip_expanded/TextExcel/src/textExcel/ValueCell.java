@@ -18,6 +18,7 @@ public class ValueCell extends RealCell{
 			truncated = userinput.substring(0,10);
 			return truncated;
 		}
+		userinput += super.spaces(userinput.length());
 		return userinput;
 	}
 

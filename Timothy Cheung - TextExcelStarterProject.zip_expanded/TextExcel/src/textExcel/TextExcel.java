@@ -16,13 +16,14 @@ public class TextExcel
 		//System.out.println(abc.getGridText());
 		Scanner userinput = new Scanner (System.in);
 		Spreadsheet sheet = new Spreadsheet();
-		boolean done = true;
-		while (done) {
+		boolean notDone = true;
+		while (notDone) {
 			String command = userinput.nextLine();
 			if (command.equals("quit")) {
-				done = false;
+				notDone = false;
+			}else{
+				System.out.println(sheet.processCommand(command));
 			}
-			System.out.println(sheet.processCommand(command));
 		}
 		
 	}

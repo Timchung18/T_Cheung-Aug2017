@@ -15,6 +15,7 @@ public class PercentCell extends ValueCell{
 		//return abbrevStr;
 		String answer = userinput.substring(0, index);
 		answer += "%";
+		answer += super.spaces(answer.length());
 		return answer;
 	}
 	public String fullCellText() {
