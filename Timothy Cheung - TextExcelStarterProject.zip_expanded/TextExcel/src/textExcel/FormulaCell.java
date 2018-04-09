@@ -10,6 +10,9 @@ public class FormulaCell extends RealCell{
 		// text for spreadsheet cell display, must be exactly length 10
 		String answer = parseInput() + "";
 		answer += super.spaces(answer.length());
+		if(answer.length() > 10) {
+			answer = answer.substring(0,10);
+		}
 		return answer;
 	}
 	// ( 6 + 3 - 8 * 8 / 2 )
@@ -35,6 +38,9 @@ public class FormulaCell extends RealCell{
 		//makes string numbers into doubles and puts them in an Array list
 		ArrayList<Double> operands = new ArrayList<Double>();
 		for(int i = 1; i < inputArr.length;i+=2) {
+			if(inputArr[1].contains("a")) {
+				
+			}
 			operands.add(getDoubleValue(inputArr[i]));
 		}
 		return operands;
@@ -58,6 +64,10 @@ public class FormulaCell extends RealCell{
 			answer = operand1 / operand2;
 		}
 		return answer;
+	}
+	
+	public void sum() {
+		
 	}
 
 }
