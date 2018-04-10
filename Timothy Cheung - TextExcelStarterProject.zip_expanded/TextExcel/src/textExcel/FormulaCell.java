@@ -37,8 +37,9 @@ public class FormulaCell extends RealCell{
 	public ArrayList<Double> makeIntoNum(String[] inputArr) { 
 		//makes string numbers into doubles and puts them in an Array list
 		ArrayList<Double> operands = new ArrayList<Double>();
-		for(int i = 1; i < inputArr.length;i+=2) {
-			if(inputArr[1].contains("a")) {
+		for(int i = 1; i < inputArr.length;i+=2) {//A=65, Z=90, a = 97, z = 122,
+			String str = inputArr[i].toLowerCase();
+			if((str.charAt(0)>=97)&&(str.charAt(0)<=122)) {
 				
 			}
 			operands.add(getDoubleValue(inputArr[i]));
