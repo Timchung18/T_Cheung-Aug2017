@@ -4,8 +4,8 @@ package textExcel;
 
 public class SpreadsheetLocation implements Location
 {
-	private int row;
-	private int column;
+	private int row;//represents the row#
+	private int column;//represents the column letter
 	public SpreadsheetLocation(String cellName)
     {
     	cellName = cellName.toLowerCase();

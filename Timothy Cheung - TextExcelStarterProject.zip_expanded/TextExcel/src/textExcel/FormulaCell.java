@@ -20,10 +20,18 @@ public class FormulaCell extends RealCell{
 	// ( 6 + 3 - 8 * 8 / 2 )
 	public double getDoubleValue() {
 		String userInput = super.getUserInput();
-		userInput = userInput.substring(1, userInput.length() - 1);
-		String [] inputArr = userInput.split(" ");
+		userInput = userInput.substring(1, userInput.length() - 1);//gets rid of the parenthesis
+		String [] inputArr = userInput.split(" ");//gets rid of the spaces 
 		//6,+,3,-,8
 		//0,1,2,3,4
+		userInput = userInput.toLowerCase();
+		if (userInput.contains("sum")) {
+			//sum, b6-c12
+			//send to the sum method 
+			//pass in inputArr[1]
+		}else if(userInput.contains("avg")) {
+			//send to the avg method
+		}else {
 		ArrayList<Double> operands = makeIntoNum(inputArr);
 		ArrayList<String> operators = new ArrayList<String>();
 		for(int i = 2; i < inputArr.length; i += 2) {
@@ -33,7 +41,9 @@ public class FormulaCell extends RealCell{
 			operands.set(0, calculate(currOptr, operands.get(0), operands.get(1)));
 			operands.remove(1);
 		}
-		return operands.get(0);
+		
+		return operands.get(0);}
+		return 0;
 	}
 	
 	public ArrayList<Double> makeIntoNum(String[] inputArr) { 
@@ -68,8 +78,24 @@ public class FormulaCell extends RealCell{
 		return answer;
 	}
 	
-	public void sum() {
-		
+	public void sum(String cellRange) {//b6-c12
+		double sum = 0;
+		String[] rangeArr = cellRange.split("-");
+		String start = rangeArr[0];//b6
+		String end = rangeArr[1];//c12
+		SpreadsheetLocation startCell = new SpreadsheetLocation(start);
+		SpreadsheetLocation endCell = new SpreadsheetLocation(end);
+		//Three cases: vertical column, horizontal row, and rectangle
+		if (startCell.getCol()==endCell.getCol()) {
+			for(int i = startCell.getRow(); i < endCell.getRow(); i++) {
+				RealCell cell = (RealCell)(sheet[startCell.getRow()][startCell.getCol()]);
+				sum += cell.getDoubleValue();
+			}
+		}
+	}
+	
+	public void avg(String cellRange) {
+		//will call the sum method and then divide by the number of cells
 	}
 
 }
