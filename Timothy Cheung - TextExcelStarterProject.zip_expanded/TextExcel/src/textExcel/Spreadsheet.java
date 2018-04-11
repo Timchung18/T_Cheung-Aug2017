@@ -52,7 +52,7 @@ public class Spreadsheet implements Grid
 			str = str.substring(1, str.length() - 1);
 			assignment = new TextCell(str);
 		} else if (splitCommand[2].contains("( ")) {//formula
-			assignment = new FormulaCell(splitCommand[2]);
+			assignment = new FormulaCell(splitCommand[2], sheet);
 		} else if (splitCommand[2].contains("%")) {//percent
 			assignment = new PercentCell(splitCommand[2]);
 		} else { //value

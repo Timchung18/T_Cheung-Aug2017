@@ -6,7 +6,17 @@ public class SpreadsheetLocation implements Location
 {
 	private int row;
 	private int column;
-    @Override
+	public SpreadsheetLocation(String cellName)
+    {
+    	cellName = cellName.toLowerCase();
+    	column = cellName.charAt(0) - 'a';
+    	row = cellName.charAt(1) - 49;
+    	if(cellName.length()==3) {
+    		row = cellName.charAt(1) * 10 - 480;
+    		row += cellName.charAt(2) - 49;
+    	}
+    }
+    @Override 
     public int getRow()
     {
         return row;
@@ -18,16 +28,7 @@ public class SpreadsheetLocation implements Location
         return column;
     }
     
-    public SpreadsheetLocation(String cellName)
-    {
-    	cellName = cellName.toLowerCase();
-    	column = cellName.charAt(0) - 'a';
-    	row = cellName.charAt(1) - 49;
-    	if(cellName.length()==3) {
-    		row = cellName.charAt(1) * 10 - 480;
-    		row += cellName.charAt(2) - 49;
-    	}
-    }
+    
 
 }
 
