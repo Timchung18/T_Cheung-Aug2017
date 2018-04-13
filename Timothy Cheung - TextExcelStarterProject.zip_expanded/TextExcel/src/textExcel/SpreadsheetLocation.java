@@ -1,3 +1,8 @@
+/*Tim Cheung
+ * AP CS, Pd. 1
+ * 4/13/18 */
+ //This class contains code for the SpreadsheetLocation object, which stores a location of a cell
+ 
 package textExcel;
 
 //Update this file with your own code.
