@@ -26,9 +26,9 @@ public class FormulaCell extends RealCell{
 		String [] inputArr = userInput.split(" ");//gets rid of the spaces 
 		userInput = userInput.toLowerCase();
 		if (userInput.contains("sum")) {
-			return (sum(inputArr[1]));
+			return (sum(inputArr[2]));
 		}else if(userInput.contains("avg")) {
-			return (avg(inputArr[1]));
+			return (avg(inputArr[2]));
 		}else {
 			ArrayList<Double> operands = makeIntoNum(inputArr);
 			ArrayList<String> operators = new ArrayList<String>();
